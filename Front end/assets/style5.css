@@ -1,10 +1,13 @@
 .container{
-    background: transparent;
+    /* background: transparent; */
+    background-color: none; 
+    /* opacity: 10; */
+    /* z-index: 5; */
 }
 
 
 h2{
-    color: #423131;
+    color: #130e0a;
     font-family: "sancreek";
     display: block;
 
@@ -20,8 +23,14 @@ body {
     font-family: 'Varela Round', sans-serif; /* Very similar font to Helvetica Round.*/
     font-size: 1rem;
     font-weight: bold;
-    background: url('https://drannelinepadayachee.files.wordpress.com/2013/06/cold-and-produce-009.jpg'); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: url() no-repeat center center fixed; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     background-repeat: no-repeat; /* Don't repeat gradient in landscape mode on mobile phones*/
     background-attachment: fixed;
     background-size: cover;
+    
+}
+
+form {
+    color: #000000;
+   
 }
