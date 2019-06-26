@@ -23,7 +23,7 @@ body {
     font-family: 'Varela Round', sans-serif; /* Very similar font to Helvetica Round.*/
     font-size: 1rem;
     font-weight: bold;
-    background: url() no-repeat center center fixed; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: url(http://www.waterworksirrigation.ca/wp-content/uploads/2019/02/plant-background-transparent-min.png) no-repeat center center fixed; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     background-repeat: no-repeat; /* Don't repeat gradient in landscape mode on mobile phones*/
     background-attachment: fixed;
     background-size: cover;
