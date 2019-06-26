@@ -20,12 +20,42 @@
 
 
 <body>
+        <h2>6ft Under</h2>
 <div class="container">
-    <h2>6ft Under</h2>
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalScrollable">
-        Add
-        </button>
+    <div class="flip-card">
+        <div class="flip-card-inner">
+            <div class="flip-card-front">
+            <img src="https://i.ya-webdesign.com/images/profile-buttons-png-4.png" alt="Profile" style="width:200px;height:200px;">
+            </div>
+            <div class="flip-card-back">
+            <h1>John Doe</h1> 
+            <p>Architect & Engineer</p> 
+            <p>I am a compost maniac.I love to compost more and less waste.</p>
+            </div>
+        </div>
+        </div>
+        <br>
+        <form action="profile form">
+                Year to date Compost:
+                <input type="text" name="YTD compost">
+                <br><br>
+                AVG Compost/house:
+                <input type="text" name="AVG compost">
+                <br><br>
+                Percent of compost:
+                <input type="text" name="% compost">
+                
+        <br><br>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalScrollable">
+            Add
+            </button>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalScrollable">
+            New Entry
+            </button>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalScrollable">
+            View Entry
+            </button>
     
         <!-- Modal -->
         <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
@@ -89,27 +119,7 @@
         </div>
         </div>
 
-    <form class="page">
-        Date<br>
-        <input type="Date" Name="Date">
-    <br>
-    First name:<br>
-    <input type="text" name="firstname">
-    <br>Last name:<br>
-    <input type="text" name="lastname">
-    <br>Type of compost:<br>
-    <input type="text" name="Type of Compost">
-    <br>vegetables:<br>
-    <input type="text" name="Type of Vegetables">
-    <br>Fruits:<br>
-    <input type="text" name="Type of Fruits">
-    <br>
-    Others:<br>
-    <input type="text" name="Others">
-    <br><br>
-    <input type="Done">
-    </form>
-</div>
+    </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
