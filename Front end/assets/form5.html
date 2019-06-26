@@ -22,6 +22,72 @@
 <body>
 <div class="container">
     <h2>6ft Under</h2>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalScrollable">
+        Add
+        </button>
+    
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalScrollableTitle">Add Compostables</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form group">
+                            <label for="exampleFormControlInput1">Date</label>
+                            <input type="Date" Name="Date"> <br>
+                            <label class="dropdownControl"> Select Type of Compost:</label> <br>
+                        <!-- Example single danger button -->
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Vegetables
+                                </button>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="#">Brocolli</a>
+                                    <a class="dropdown-item" href="#">Carrots</a>
+                                    <a class="dropdown-item" href="#">Spinach</a>
+                                </div>
+                            </div> 
+                            <br> <br>
+                        <!-- Example single danger button -->
+                        <div class="btn-group">
+                                <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Fruits
+                                </button>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="#">Apples</a>
+                                    <a class="dropdown-item" href="#">Bananas</a>
+                                    <a class="dropdown-item" href="#">Berries</a>
+                                </div>
+                                </div>
+                                <br><br>
+                        <!-- Example single danger button -->
+                        <div class="btn-group">
+                                <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Other
+                                </button>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="#">Egg shells</a>
+                                    <a class="dropdown-item" href="#">Coffee Grounds</a>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                </div>
+                                </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+            </div>
+        </div>
+        </div>
 
     <form class="page">
         Date<br>
