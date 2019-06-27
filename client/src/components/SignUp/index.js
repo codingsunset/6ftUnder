@@ -1,7 +1,8 @@
 import React from "react";
+import "./style.css";
 
-const SignUp = React.createClass({
-  render: function() {
+class SignUp extends React.Component{
+  render() {
     return (
       <form action method="post" name="myForm" autoComplete="on">
         <div className="container">
@@ -86,6 +87,6 @@ const SignUp = React.createClass({
       </form>
     );
   }
-});
+};
 
 export default SignUp;

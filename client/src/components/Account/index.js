@@ -1,7 +1,15 @@
 import React from "react";
+import "./style.css";
+import axios from "axios";
 
-const Account = React.createClass({
-  render: function() {
+class Account extends React.Component{
+  viewEntries = () => {
+    axios.get("/api/records/1")
+    .then(function(entries){
+        console.log(entries);
+    })
+  }    
+  render() {
     return (
       <div>
         <h2>6ft Under</h2>
@@ -60,6 +68,7 @@ const Account = React.createClass({
               className="btn btn-primary"
               data-toggle="modal"
               data-target="#exampleModalScrollable"
+              onClick = {this.viewEntries.bind(this)}
             >
               View Entry
             </button>
@@ -196,6 +205,6 @@ const Account = React.createClass({
       </div>
     );
   }
-});
+};
 
 export default Account;
