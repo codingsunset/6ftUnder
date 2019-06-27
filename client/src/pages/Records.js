@@ -7,29 +7,29 @@ import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
 
-class Books extends Component {
+class Records extends Component {
   state = {
-    books: [],
-    title: "",
-    author: "",
-    synopsis: ""
+    records: [],
+    vegetableName: "",
+    vegetableAmount: "",
+    notes: ""
   };
 
   componentDidMount() {
-    this.loadBooks();
+    this.loadRecords();
   }
 
-  loadBooks = () => {
-    API.getBooks()
+  loadRecords = () => {
+    API.getRecords()
       .then(res =>
-        this.setState({ books: res.data, title: "", author: "", synopsis: "" })
+        this.setState({ records: res.data, vegetableName: "", vegetableAmount: "", notes: "" })
       )
       .catch(err => console.log(err));
   };
 
-  deleteBook = id => {
-    API.deleteBook(id)
-      .then(res => this.loadBooks())
+  deleteRecord = id => {
+    API.deleteRecord(id)
+      .then(res => this.loadRecords())
       .catch(err => console.log(err));
   };
 
@@ -42,13 +42,13 @@ class Books extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    if (this.state.title && this.state.author) {
-      API.saveBook({
-        title: this.state.title,
-        author: this.state.author,
-        synopsis: this.state.synopsis
+    if (this.state.vegetableName && this.state.vegetableAmount) {
+      API.saveRecord({
+        vegetableName: this.state.vegetableName,
+        vegetableAmount: this.state.vegetableAmount,
+        notes: this.state.notes
       })
-        .then(res => this.loadBooks())
+        .then(res => this.loadRecords())
         .catch(err => console.log(err));
     }
   };
@@ -63,25 +63,25 @@ class Books extends Component {
             </Jumbotron>
             <form>
               <Input
-                value={this.state.title}
+                value={this.state.vegetableName}
                 onChange={this.handleInputChange}
-                name="title"
-                placeholder="Item (required)"
+                name="vegetableName"
+                placeholder="Name of veggie (required)"
               />
               <Input
-                value={this.state.author}
+                value={this.state.vegetableAmount}
                 onChange={this.handleInputChange}
-                name="author"
-                placeholder="user name (required)"
+                name="vegetableAmount"
+                placeholder="Amount of veggie (required)"
               />
               <TextArea
-                value={this.state.synopsis}
+                value={this.state.notes}
                 onChange={this.handleInputChange}
-                name="synopsis"
-                placeholder="notes (Optional)"
+                name="notes"
+                placeholder="notes (optional)"
               />
               <FormBtn
-                disabled={!(this.state.author && this.state.title)}
+                disabled={!(this.state.vegetableAmount && this.state.vegetableName)}
                 onClick={this.handleFormSubmit}
               >
                 Submit Record
@@ -92,22 +92,22 @@ class Books extends Component {
             <Jumbotron>
               <h1>Data items readout</h1>
             </Jumbotron>
-            {this.state.books.length ? (
+            {this.state.records.length ? (
               <List>
-                {this.state.books.map(book => (
-                  <ListItem key={book._id}>
-                    <Link to={"/books/" + book._id}>
+                {this.state.records.map(record => (
+                  <ListItem key={record._id}>
+                    <Link to={"/records/" + record._id}>
                       <strong>
-                        {book.title} by {book.author}
+                        {record.vegetableName} of {record.vegetableAmount} pounds
                       </strong>
                     </Link>
-                    <DeleteBtn onClick={() => this.deleteBook(book._id)} />
+                    <DeleteBtn onClick={() => this.deleteRecord(record._id)} />
                   </ListItem>
                 ))}
               </List>
             ) : (
-              <h3>No Results to Display</h3>
-            )}
+                <h3>No Results to Display</h3>
+              )}
           </Col>
         </Row>
       </Container>
@@ -115,4 +115,4 @@ class Books extends Component {
   }
 }
 
-export default Books;
+export default Records;
