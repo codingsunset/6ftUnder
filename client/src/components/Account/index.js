@@ -4,6 +4,8 @@ import axios from "axios";
 
 class Account extends React.Component{
   viewEntries = () => {
+    //dummy test for line 8
+    console.log("click received")
     axios.get("/api/records/1")
     .then(function(entries){
         console.log(entries);
@@ -68,6 +70,7 @@ class Account extends React.Component{
               className="btn btn-primary"
               data-toggle="modal"
               data-target="#exampleModalScrollable"
+              //binds getting data from database with button click
               onClick = {this.viewEntries.bind(this)}
             >
               View Entry
