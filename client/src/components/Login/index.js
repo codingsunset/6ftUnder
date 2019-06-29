@@ -1,9 +1,10 @@
 import React from "react";
+import "./style.css";
 
-const Login = React.createClass({
-  render: function() {
+class Login extends React.Component{
+  render() {
     return (
-      <div className="container">
+      <div className="container login-page">
         <h1 className="glow">6ft Under</h1>
         <form action method="post" name="myForm" autoComplete="on">
           <h4>Sign In</h4>
@@ -39,5 +40,5 @@ const Login = React.createClass({
       </div>
     );
   }
-});
+};
 export default Login;
