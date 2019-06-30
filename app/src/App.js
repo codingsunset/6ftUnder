@@ -7,6 +7,7 @@ import Records from "./pages/Records";
 import Detail from "./pages/Detail";
 import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
+import AddRecord from "./components/AddRecord";
 
 
 function App(){
@@ -21,6 +22,7 @@ function App(){
           <Route exact path="/account" component={Account} />
           <Route exact path="/records" component={Records} />
           <Route exact path="/records/:id" component={Records} />
+          <Route exact path="/add" component={AddRecord} />
           <Route component={NoMatch} />
         </Switch>
       </div>
