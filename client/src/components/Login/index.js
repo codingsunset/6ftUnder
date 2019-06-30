@@ -16,7 +16,7 @@ class Login extends React.Component{
             <input required id="password" type="password" />
             <label htmlFor="password">Password</label>
           </div>
-          <div className="input-button">
+          <div className="input-button ">
             <input type="button" defaultValue="Sign In" />
             <div className="ripple-container" />
           </div>
