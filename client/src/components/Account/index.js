@@ -11,6 +11,9 @@ class Account extends React.Component {
         console.log(entries);
       })
   }
+
+  
+
   render() {
     return (
       <div>
