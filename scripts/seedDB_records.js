@@ -167,16 +167,4 @@ db.Record
     process.exit(1);
   });
 
-db.User
-  .remove({})
-  .then(() => db.User.collection.insertMany(userSeed))
-  .then(data => {
-    console.log(data.result.n + " users inserted!");
-    process.exit(0);
-  })
-  .catch(err => {
-    console.error(err);
-    process.exit(1);
-  });
-
 
