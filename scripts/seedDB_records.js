@@ -1,11 +1,12 @@
 const mongoose = require("mongoose");
 const db = require("../models");
 
-// This file empties the Books collection and inserts the books below
+// This file empties the records collection and inserts the records below
 
 mongoose.connect(
   process.env.MONGODB_URI ||
-  "mongodb://localhost/sixFeetUnderDB"
+  "mongodb://localhost/sixFeetUnderDB",
+  { useNewUrlParser: true }
 );
 
 // const recordSeed = [
@@ -165,3 +166,17 @@ db.Record
     console.error(err);
     process.exit(1);
   });
+
+db.User
+  .remove({})
+  .then(() => db.User.collection.insertMany(userSeed))
+  .then(data => {
+    console.log(data.result.n + " users inserted!");
+    process.exit(0);
+  })
+  .catch(err => {
+    console.error(err);
+    process.exit(1);
+  });
+
+

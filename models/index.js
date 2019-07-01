@@ -1,3 +1,4 @@
 module.exports = {
-  Record: require("./record")
+  Record: require("./record"),
+  User: require("./user")
 };
