@@ -21,7 +21,7 @@ function App(){
           <Route exact path="/account" component={Account} />
           <Route exact path="/records" component={Records} />
           <Route exact path="/records/:id" component={Records} />
-          <Route component={NoMatch} />
+          {/* <Route component={NoMatch} /> */}
         </Switch>
       </div>
     </Router>

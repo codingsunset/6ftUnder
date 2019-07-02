@@ -22,7 +22,12 @@ class Records extends Component {
   loadRecords = () => {
     API.getRecords()
       .then(res =>
-        this.setState({ records: res.data, vegetableName: "", vegetableAmount: "", notes: "" })
+        this.setState({
+          records: res.data,
+          vegetableName: "",
+          vegetableAmount: "",
+          notes: ""
+        })
       )
       .catch(err => console.log(err));
   };
