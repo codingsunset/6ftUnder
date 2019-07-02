@@ -96,6 +96,17 @@ html { /* html is full screen. */
     
 }
 
+.secondary-head {
+    display: block;
+    text-align: center;
+    color: #0000ff;
+    
+}
+
+.secondary-head :hover{
+    color: rgb(4, 253, 78);
+}
+
 
 body {
     height: 100%;
