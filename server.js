@@ -18,7 +18,11 @@ if (process.env.NODE_ENV === "production") {
 app.use(routes);
 
 // Connect to the Mongo DB
-// mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/sixFeetUnderDB");
+mongoose
+.connect(process.env.MONGODB_URI || "mongodb://localhost/sixFeetUnderDB",
+{ useNewUrlParser: true})
+.then(() => console.log('MongoDB Connected!'))
+.catch(err => console.log(err));
 // mongoose.connect(process.env.MONGODB_URI || "mongodb://<dbuser>:<dbpassword>@ds339177.mlab.com:39177/heroku_ntjjp090");
 // mongoose.connect(process.env.MONGODB_URI);
 

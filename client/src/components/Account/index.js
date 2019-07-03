@@ -18,9 +18,10 @@ class Account extends React.Component {
   viewEntries = () => {
       console.log("click received")
       axios.get("/api/records")
-        .then(function (entries) {
+        .then( entries => {
           console.log(entries);
-          this.setState({entries,showEntriesDiv:true})
+          // this.setState({entries,showEntriesDiv:true})
+          this.setState({entries: entries.data, showEntriesDiv:true})
         })
     }
 

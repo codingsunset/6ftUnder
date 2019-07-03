@@ -15,11 +15,12 @@ class CompostEntryList extends React.Component {
     //   }
 
     render(){
+        // console.log(this.props.entries[0] && this.props.entries[0]._id)
         return(
             <div className = "entry">
                 <ul>
                     {this.props.entries.map(entry =>
-                        <li><CompostEntry name = {entry.name} quantity = {entry.quantity}/></li>)}
+                        <li key = {entry._id}><CompostEntry name = {entry.vegetableName} quantity = {entry.quantity}/></li>)}
                 </ul>
             </div>
         )
