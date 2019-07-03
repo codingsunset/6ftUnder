@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const passport = require('passport'); // for authentication, using passport-local strategy
 const flash = require('connect-flash'); // for flash messaging
 const session = require('express-session'); // connect-flash depends on express-session
-
+const expressLayouts = require('express-ejs-layouts'); // template engine, temporary
 const app = express();
 
 // Define middleware here
@@ -12,12 +12,6 @@ app.use(express.json());
 // app.use(express.static("client/public"));
 
 // Serve up static assets (usually on heroku)
-
-// Add routes, both API and view
-const routes = require("./routes/api");
-console.log(routes)
-app.use('/api/records', routes);
-
 
 // Connect to the Mongo DB
 mongoose
@@ -50,6 +44,21 @@ app.use(function (req, res, next) {
   res.locals.error = req.flash('error');
   next();
 });
+
+// temporarily following the tutorial to
+// use ejs view engine to serve authentication pages
+// to be integrated into react
+// EJS
+app.use(expressLayouts);
+app.set('view engine', 'ejs');
+
+// Add routes, both API and view
+// const routes = require("./routes/api");
+// console.log(routes)
+app.use('/api/records', require("./routes/api/records"));
+// Routes
+app.use('/', require('./routes/index.js'));
+app.use('/users', require('./routes/users.js'));
 
 // Start the API server
 const PORT = process.env.PORT || 7000;
