@@ -90,7 +90,6 @@ class Account extends React.Component {
               View Entry
             </button>
             <div className = {this.state.showEntriesDiv ? "showDiv" : "hidden"}>
-              <h1>Hey Godfrey!</h1>
               <CompostEntryList entries={this.state.entries}/>
             </div>
             
