@@ -1,7 +1,7 @@
 import React from "react";
 import "./style.css";
 import Autosuggest from "react-autosuggest";
-import API from "../../utils/API";
+
 
 const fruitsVeggies = [
   {
@@ -37,13 +37,6 @@ class AddRecord extends React.Component {
       value: "",
       suggestions: []
     };
-  }
-
-  //books Detail.js example
-  componentDidMount() {
-    API.getRecord(this.props.match.params.id)
-      .then(res => this.setState({ record: res.data }))
-      .catch(err => console.log(err));
   }
 
   onChange = (event, { newValue }) => {
