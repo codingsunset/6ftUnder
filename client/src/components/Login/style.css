@@ -50,10 +50,11 @@ html { /* html is full screen. */
     color: #0000ff;
     
 }
+
 #contact-icons :hover{
     color: rgb(108, 247, 149);
 }
-.login-page{
+body{
     background-image: url('http://ec.europa.eu/programmes/horizon2020/en/system/files/newsroom/fotolia_66603841_seeds_green_9538.jpg');
     background-repeat: no-repeat;
     height: 100%;
@@ -130,7 +131,7 @@ form{
     }
     
     input[type="button"]{
-    background-color: #2A9AF2;
+    background-color: rgb(8, 146, 252);
     border: none;
     color: #FFFFFF;
     border-radius: 3px;
