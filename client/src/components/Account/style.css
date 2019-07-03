@@ -79,3 +79,11 @@ form {
     color: #000000;
    
 }
+
+.showDiv {
+    display: block;
+}
+
+.hidden {
+    display: none;
+}

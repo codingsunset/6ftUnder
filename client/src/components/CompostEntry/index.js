@@ -1,24 +1,12 @@
 import React from "react";
-import "./style.css";
+import "./styles.css";
 
-class CompostEntry extends React.Component {
-    //insert method here
-        //insert setState({})
-
-    state={
-        //not sure what should go in here
-        entries
-    };
-
-    render(){
-        return(
-            <div className = "entry">
-                <ul>
-                    {this.state.entries.map(entry =>
-                        <li><CompostEntry name = {entry.name} quantity = {entry.quantity}/></li>)}
-                </ul>
-            </div>
-        )
-    }
-
+const CompostEntry = (Props) => {
+    return(
+        <div>
+           <p>{Props.name}</p>
+           <p>{Props.quantity}</p> 
+        </div>
+    );
 }
+export default CompostEntry;

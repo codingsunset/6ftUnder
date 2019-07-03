@@ -1,18 +1,29 @@
 import React from "react";
 import "./style.css";
 import axios from "axios";
+import CompostEntryList from "../CompostEntryList"
 
 class Account extends React.Component {
-  viewEntries = () => {
-    //dummy test for line 8
-    console.log("click received")
-    axios.get("/api/records")
-      .then(function (entries) {
-        console.log(entries);
-      })
-  }
+  // viewEntries = () => {
+  //   //dummy test for line 8
+  //   console.log("click received")
+  //   axios.get("/api/records")
+  //     .then(function (entries) {
+  //       console.log(entries);
+  //     })
+  // }
+  state={entries:[],
+    showEntriesDiv:false};
 
-  
+  viewEntries = () => {
+      console.log("click received")
+      axios.get("/api/records")
+        .then(function (entries) {
+          console.log(entries);
+          this.setState({entries,showEntriesDiv:true})
+        })
+    }
+
 
   render() {
     return (
@@ -78,6 +89,13 @@ class Account extends React.Component {
             >
               View Entry
             </button>
+            <div className = {this.state.showEntriesDiv ? "showDiv" : "hidden"}>
+              <h1>Hey Godfrey!</h1>
+              <CompostEntryList entries={this.state.entries}/>
+            </div>
+            
+
+
             {/* Modal */}
             <div
               className="modal fade"
