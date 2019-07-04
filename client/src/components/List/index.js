@@ -11,6 +11,6 @@ export function List({ children }) {
   );
 }
 
-export function ListItem({ children }) {
-  return <li data-tip data-for="test" className="list-group-item">{children}</li>;
+export function ListItem(props) {
+  return <li data-tip data-for={props.children[0].props.id} className="list-group-item">{props.children}</li>;
 }

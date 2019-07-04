@@ -153,11 +153,16 @@ class Records extends Component {
             {this.state.records.length ? (
               <List>
                 {this.state.records.map(record => (
+                  console.log(record.vegetableName),
                   <ListItem key={record._id}>
-                    <ReactTooltip id="test" effect="solid">
-                      <span>{record._id}</span>
-                    </ReactTooltip>
-                    {console.log(record._id)}
+                    <ReactTooltip id={record._id} effect="solid">
+                      <ul>
+                        {/* {record.vegetableName.map(vegetableName => (
+                          <span>{vegetableName}</span>
+                        ))} */}
+                        <li><span>{record.vegetableName}</span> : <span>{record.vegetableAmount}</span></li>
+                      </ul>
+                    </ReactTooltip> 
                     <Link to={"/records/" + record._id}>
                       <strong>
                         {record.vegetableName} of {record.vegetableAmount} pounds
