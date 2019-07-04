@@ -1,12 +1,13 @@
 import React, { Component } from "react";
-import DeleteBtn from "../components/DeleteBtn";
-import Jumbotron from "../components/Jumbotron";
-import API from "../utils/API";
+import DeleteBtn from "../DeleteBtn";
+import Jumbotron from "../Jumbotron";
+import API from "../../utils/API";
 import { Link } from "react-router-dom";
-import { Col, Row, Container } from "../components/Grid";
-import { List, ListItem } from "../components/List";
-import { Input, TextArea, FormBtn } from "../components/Form";
-import AddRecord from "../components/AddRecord";
+import { Col, Row, Container } from "../Grid";
+import { List, ListItem } from "../List";
+import { Input, TextArea, FormBtn } from "../Form";
+import AddRecord from "../AddRecord";
+import "./style.css";
 
 class Records extends Component {
   state = {
@@ -85,6 +86,7 @@ class Records extends Component {
                 value={this.state.notes}
                 onChange={this.handleInputChange}
                 name="notes"
+                id="text-area"
                 placeholder="notes (optional)"
               />
               <FormBtn
