@@ -47,7 +47,7 @@ html { /* html is full screen. */
 .secondary-head {
     display: block;
     text-align: center;
-    color: #0000ff;
+    color: red;
     
 }
 
@@ -55,6 +55,7 @@ html { /* html is full screen. */
     color: rgb(108, 247, 149);
 }
 body{
+
     background-image: url('http://ec.europa.eu/programmes/horizon2020/en/system/files/newsroom/fotolia_66603841_seeds_green_9538.jpg');
     background-repeat: no-repeat;
     height: 100%;

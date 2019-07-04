@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
+import AddRecord from "../components/AddRecord";
 
 class Records extends Component {
   state = {
@@ -59,10 +60,10 @@ class Records extends Component {
         <Row>
           <Col size="md-6">
             <Jumbotron>
-              <h1>Input fields of data items</h1>
+              <h1>Log Your Compost</h1>
             </Jumbotron>
             <form>
-              <Input
+              <AddRecord
                 value={this.state.vegetableName}
                 onChange={this.handleInputChange}
                 name="vegetableName"
@@ -73,6 +74,12 @@ class Records extends Component {
                 onChange={this.handleInputChange}
                 name="vegetableAmount"
                 placeholder="Amount of veggie (required)"
+              />
+              <Input
+                value={this.state.date}
+                onChange={this.handleInputChange}
+                name="date"
+                placeholder="Date (MM/DD/YYYY)"
               />
               <TextArea
                 value={this.state.notes}
@@ -90,7 +97,7 @@ class Records extends Component {
           </Col>
           <Col size="md-6 sm-12">
             <Jumbotron>
-              <h1>Data items readout</h1>
+              <h1>Your Composting History</h1>
             </Jumbotron>
             {this.state.records.length ? (
               <List>
@@ -101,7 +108,7 @@ class Records extends Component {
                         {record.vegetableName} of {record.vegetableAmount} pounds
                       </strong>
                     </Link>
-                    <DeleteBtn onClick={() => this.deleteRecord(record._id)} />
+                    {/* <DeleteBtn onClick={() => this.deleteRecord(record._id)} /> */}
                   </ListItem>
                 ))}
               </List>

@@ -5,8 +5,8 @@ class SignUp extends React.Component{
   render() {
     return (
       <form action method="post" name="myForm" autoComplete="on">
-        <div className="container">
-          <h1 className="header">6ft Under</h1>
+        <div className="container signup-container">
+          <h1 className="header signUp-header">6ft Under</h1>
           <div id="contact-icons">
             <div className="secondary-head">
               <a href="https://twitter.com" target="_blank">
