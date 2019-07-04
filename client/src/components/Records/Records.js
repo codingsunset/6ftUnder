@@ -7,8 +7,7 @@ import { Col, Row, Container } from "../Grid";
 import { List, ListItem } from "../List";
 import { Input, TextArea, FormBtn } from "../Form";
 import AddRecord from "../AddRecord";
-import Autosuggest from "react-autosuggest";
-import fruitsVeggies from "../../utils/list";
+import ReactTooltip from 'react-tooltip'
 import "./style.css";
 
 const getSuggestions = value => {
@@ -153,6 +152,10 @@ class Records extends Component {
               <List>
                 {this.state.records.map(record => (
                   <ListItem key={record._id}>
+                    <ReactTooltip id="test" effect="solid">
+                      <span>{record._id}</span>
+                    </ReactTooltip>
+                    {console.log(record._id)}
                     <Link to={"/records/" + record._id}>
                       <strong>
                         {record.vegetableName} of {record.vegetableAmount} pounds
