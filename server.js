@@ -56,6 +56,7 @@ app.set('view engine', 'ejs');
 // const routes = require("./routes/api");
 // console.log(routes)
 app.use('/api/records', require("./routes/api/records"));
+app.use('/api/auth', require("./routes/api/auth"));
 // Routes
 app.use('/', require('./routes/index.js'));
 app.use('/users', require('./routes/users.js'));
