@@ -8,6 +8,8 @@ import { List, ListItem } from "../List";
 import { Input, TextArea, FormBtn } from "../Form";
 import AddRecord from "../AddRecord";
 import ReactTooltip from 'react-tooltip'
+import Autosuggest from 'react-autosuggest';
+import fruitsVeggies from '../../utils/list';
 import "./style.css";
 
 const getSuggestions = value => {
