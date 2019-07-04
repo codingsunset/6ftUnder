@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 import "./style.css";
 import axios from "axios";
 import CompostEntryList from "../CompostEntryList"
@@ -12,18 +13,19 @@ class Account extends React.Component {
   //       console.log(entries);
   //     })
   // }
-  state={entries:[],
-    showEntriesDiv:false};
+  // code to render component on page...want to keep it, just in case
+  // state={entries:[],
+  //   showEntriesDiv:false};
 
-  viewEntries = () => {
-      console.log("click received")
-      axios.get("/api/records")
-        .then( entries => {
-          console.log(entries);
-          // this.setState({entries,showEntriesDiv:true})
-          this.setState({entries: entries.data, showEntriesDiv:true})
-        })
-    }
+  // viewEntries = () => {
+  //     console.log("click received")
+  //     axios.get("/api/records")
+  //       .then( entries => {
+  //         console.log(entries);
+  //         // this.setState({entries,showEntriesDiv:true})
+  //         this.setState({entries: entries.data, showEntriesDiv:true})
+  //       })
+  //   }
 
 
   render() {
@@ -64,14 +66,14 @@ class Account extends React.Component {
             <input type="text" name="% compost" />
             <br />
             <br />
-            <button
+            {/* <button
               type="button"
               className="btn btn-primary"
               data-toggle="modal"
               data-target="#exampleModalScrollable"
             >
               Add
-            </button>
+            </button> */}
             <button
               type="button"
               className="btn btn-primary"
@@ -80,19 +82,21 @@ class Account extends React.Component {
             >
               New Entry
             </button>
-            <button
+            {/* <button
               type="button"
               className="btn btn-primary"
               data-toggle="modal"
               data-target="#exampleModalScrollable"
               //binds getting data from database with button click
-              onClick={this.viewEntries.bind(this)}
+              // onClick={this.viewEntries.bind(this)}
             >
               View Entry
-            </button>
-            <div className = {this.state.showEntriesDiv ? "showDiv" : "hidden"}>
+            </button> */}
+            <Link to='/records'><button className="btn btn-primary">Compost History</button></Link>
+            {/* old code to display component on page */}
+            {/* <div className = {this.state.showEntriesDiv ? "showDiv" : "hidden"}>
               <CompostEntryList entries={this.state.entries}/>
-            </div>
+            </div> */}
             
 
 

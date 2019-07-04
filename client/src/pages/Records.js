@@ -60,7 +60,7 @@ class Records extends Component {
         <Row>
           <Col size="md-6">
             <Jumbotron>
-              <h1>Input fields of data items</h1>
+              <h1>Log Your Compost</h1>
             </Jumbotron>
             <form>
               <AddRecord
@@ -97,7 +97,7 @@ class Records extends Component {
           </Col>
           <Col size="md-6 sm-12">
             <Jumbotron>
-              <h1>Data items readout</h1>
+              <h1>Your Composting History</h1>
             </Jumbotron>
             {this.state.records.length ? (
               <List>
@@ -108,7 +108,7 @@ class Records extends Component {
                         {record.vegetableName} of {record.vegetableAmount} pounds
                       </strong>
                     </Link>
-                    <DeleteBtn onClick={() => this.deleteRecord(record._id)} />
+                    {/* <DeleteBtn onClick={() => this.deleteRecord(record._id)} /> */}
                   </ListItem>
                 ))}
               </List>
