@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 import "./style.css";
-import axios from "axios";
-import CompostEntryList from "../CompostEntryList"
+// import axios from "axios";
+// import CompostEntryList from "../CompostEntryList"
 
 class Account extends React.Component {
   // viewEntries = () => {

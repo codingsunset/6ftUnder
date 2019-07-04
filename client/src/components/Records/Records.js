@@ -1,13 +1,15 @@
 import React, { Component } from "react";
-import DeleteBtn from "../components/DeleteBtn";
-import Jumbotron from "../components/Jumbotron";
-import API from "../utils/API";
+import DeleteBtn from "../DeleteBtn";
+import Jumbotron from "../Jumbotron";
+import API from "../../utils/API";
 import { Link } from "react-router-dom";
-import { Col, Row, Container } from "../components/Grid";
-import { List, ListItem } from "../components/List";
-import { Input, TextArea, FormBtn } from "../components/Form";
+import { Col, Row, Container } from "../Grid";
+import { List, ListItem } from "../List";
+import { Input, TextArea, FormBtn } from "../Form";
+import AddRecord from "../AddRecord";
 import Autosuggest from "react-autosuggest";
-import fruitsVeggies from "../utils/list";
+import fruitsVeggies from "../../utils/list";
+import "./style.css";
 
 const getSuggestions = value => {
   const inputValue = value.trim().toLowerCase();
@@ -23,6 +25,7 @@ const getSuggestions = value => {
 const getSuggestionValue = suggestion => suggestion.name;
 
 const renderSuggestion = suggestion => <div className = "form-control">{suggestion.name}</div>;
+
 
 class Records extends Component {
   state = {
@@ -131,6 +134,7 @@ class Records extends Component {
                 value={this.state.notes}
                 onChange={this.handleInputChange}
                 name="notes"
+                id="text-area"
                 placeholder="notes (optional)"
               />
               <FormBtn
