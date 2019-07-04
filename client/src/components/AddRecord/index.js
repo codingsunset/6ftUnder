@@ -43,6 +43,7 @@ class AddRecord extends React.Component {
     this.setState({
       value: newValue
     });
+    console.log("newValue is " + newValue)
   };
 
   onSuggestionsFetchRequested = ({ value }) => {
@@ -64,7 +65,7 @@ class AddRecord extends React.Component {
       className: "form-control",
       placeholder: "Type a veggie or fruit!",
       value,
-      onChange: this.onChange
+      onAutoSuggestChange: this.onAutoSuggestChange
     };
 
     return (

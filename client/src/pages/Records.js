@@ -7,15 +7,53 @@ import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
 import AddRecord from "../components/AddRecord";
+import Autosuggest from "react-autosuggest";
+import fruitsVeggies from "../utils/list";
+
+const getSuggestions = value => {
+  const inputValue = value.trim().toLowerCase();
+  const inputLength = inputValue.length;
+
+  return inputLength === 0
+    ? []
+    : fruitsVeggies.filter(
+        lang => lang.name.toLowerCase().slice(0, inputLength) === inputValue
+      );
+};
+
+const getSuggestionValue = suggestion => suggestion.name;
+
+const renderSuggestion = suggestion => <div className = "form-control">{suggestion.name}</div>;
 
 class Records extends Component {
   state = {
+    value: "",
+    suggestions: [],
     records: [],
     vegetableName: "",
     vegetableAmount: "",
     notes: ""
   };
 
+  onChange = (event, { newValue }) => {
+    this.setState({
+      value: newValue
+    });
+    console.log("newValue is " + newValue)
+    console.log("this.state ", this.state)
+  };
+
+  onSuggestionsFetchRequested = ({ value }) => {
+    this.setState({
+      suggestions: getSuggestions(value)
+    });
+  };
+
+  onSuggestionsClearRequested = () => {
+    this.setState({
+      suggestions: []
+    });
+  };
   componentDidMount() {
     this.loadRecords();
   }
@@ -36,6 +74,7 @@ class Records extends Component {
 
   handleInputChange = event => {
     const { name, value } = event.target;
+    console.log( "Name and value on handleinputchange " + name + value)
     this.setState({
       [name]: value
     });
@@ -43,18 +82,24 @@ class Records extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    if (this.state.vegetableName && this.state.vegetableAmount) {
       API.saveRecord({
-        vegetableName: this.state.vegetableName,
+        vegetableName: this.state.value,
         vegetableAmount: this.state.vegetableAmount,
         notes: this.state.notes
       })
         .then(res => this.loadRecords())
         .catch(err => console.log(err));
-    }
   };
 
   render() {
+    const { value, suggestions } = this.state;
+
+    const inputProps = {
+      className: "form-control",
+      placeholder: "Type a veggie or fruit!",
+      value,
+      onChange: this.onChange
+    };
     return (
       <Container fluid>
         <Row>
@@ -63,12 +108,14 @@ class Records extends Component {
               <h1>Log Your Compost</h1>
             </Jumbotron>
             <form>
-              <AddRecord
-                value={this.state.vegetableName}
-                onChange={this.handleInputChange}
-                name="vegetableName"
-                placeholder="Name of veggie (required)"
-              />
+              <Autosuggest
+                suggestions={suggestions}
+                onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+                onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+                getSuggestionValue={getSuggestionValue}
+                renderSuggestion={renderSuggestion}
+                inputProps={inputProps }
+              />  
               <Input
                 value={this.state.vegetableAmount}
                 onChange={this.handleInputChange}
@@ -88,7 +135,7 @@ class Records extends Component {
                 placeholder="notes (optional)"
               />
               <FormBtn
-                disabled={!(this.state.vegetableAmount && this.state.vegetableName)}
+                disabled={!this.state.vegetableAmount && !this.state.vegetableName}
                 onClick={this.handleFormSubmit}
               >
                 Submit Record
