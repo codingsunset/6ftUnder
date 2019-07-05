@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../Grid";
 import { List, ListItem } from "../List";
 import { Input, TextArea, FormBtn } from "../Form";
+import Modal from '../Modal';
 import AddRecord from "../AddRecord";
 import ReactTooltip from 'react-tooltip'
 import Autosuggest from 'react-autosuggest';
@@ -35,15 +36,16 @@ class Records extends Component {
     records: [],
     vegetableName: "",
     vegetableAmount: "",
-    notes: ""
+    notes: "",
+    showModal: false,
   };
 
   onChange = (event, { newValue }) => {
     this.setState({
       value: newValue
     });
-    console.log("newValue is " + newValue)
-    console.log("this.state ", this.state)
+    // console.log("newValue is " + newValue)
+    // console.log("this.state ", this.state)
   };
 
   onSuggestionsFetchRequested = ({ value }) => {
@@ -63,8 +65,10 @@ class Records extends Component {
 
   loadRecords = () => {
     API.getRecords()
-      .then(res =>
+      .then(res => {
+        console.log(res);
         this.setState({ records: res.data, vegetableName: "", vegetableAmount: "", notes: "" })
+        }
       )
       .catch(err => console.log(err));
   };
@@ -77,7 +81,7 @@ class Records extends Component {
 
   handleInputChange = event => {
     const { name, value } = event.target;
-    console.log( "Name and value on handleinputchange " + name + value)
+    // console.log( "Name and value on handleinputchange " + name + value)
     this.setState({
       [name]: value
     });
@@ -85,6 +89,11 @@ class Records extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
+      if(!this.state.records){
+        this.setState({
+          showModal: true
+        })
+      }
       API.saveRecord({
         vegetableName: this.state.value,
         vegetableAmount: this.state.vegetableAmount,
@@ -93,6 +102,12 @@ class Records extends Component {
         .then(res => this.loadRecords())
         .catch(err => console.log(err));
   };
+  
+  hideModal = () => {
+    this.setState({
+      showModal: false
+    })
+  }
 
   render() {
     const { value, suggestions } = this.state;
@@ -105,6 +120,7 @@ class Records extends Component {
     };
     return (
       <Container fluid>
+        <Modal showModal={this.state.showModal} hideModal={this.hideModal}/>
         <Row>
           <Col size="md-6">
             <Jumbotron>
@@ -153,7 +169,6 @@ class Records extends Component {
             {this.state.records.length ? (
               <List>
                 {this.state.records.map(record => (
-                  console.log(record.vegetableName),
                   <ListItem key={record._id}>
                     <ReactTooltip id={record._id} effect="solid">
                       <ul>
