@@ -8,6 +8,7 @@ import AddRecord from "./components/AddRecord";
 import Detail from "./pages/Detail";
 import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
+import './styles.css';
 
 
 function App(){

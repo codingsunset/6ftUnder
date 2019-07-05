@@ -30,7 +30,7 @@ class Account extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="account-wrapper">
         <h2>6ft Under</h2>
         <div className="container">
           {/* Button trigger modal */}
