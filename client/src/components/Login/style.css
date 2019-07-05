@@ -54,8 +54,7 @@ html { /* html is full screen. */
 #contact-icons :hover{
     color: rgb(108, 247, 149);
 }
-body{
-
+.login-page{
     background-image: url('http://ec.europa.eu/programmes/horizon2020/en/system/files/newsroom/fotolia_66603841_seeds_green_9538.jpg');
     background-repeat: no-repeat;
     height: 100%;
@@ -67,6 +66,7 @@ body{
     
 form{
     width: 400px;
+    max-height:50%;
     margin: 0 auto;
     background: transparent;
     

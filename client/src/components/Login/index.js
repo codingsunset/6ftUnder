@@ -4,7 +4,7 @@ import "./style.css";
 class Login extends React.Component{
   render() {
     return (
-      <div className={"styles.container styles.login-page"}>
+      <div className='login-page'>
         <h1 className={"styles.glow"}>6ft Under</h1>
         <form action method="post" name="myForm" autoComplete="on">
           <h4>Sign In</h4>
