@@ -23,19 +23,6 @@ class Login extends React.Component{
           <h6>
             Not Registered?<a href="#"> Sign Up please</a>
           </h6>
-          <div id="contact-icons">
-            <div className="secondary-head">
-              <a href="https://twitter.com" target="_blank">
-                <i className="fab fa-twitter" />{" "}
-              </a>
-              <a href="https://www.instagram.com" target="_blank">
-                <i className="fab fa-instagram" />
-              </a>
-              <a href="https://www.facebook.com" target="_blank">
-                <i className="fab fa-facebook-f" />
-              </a>
-            </div>
-          </div>
         </form>
       </div>
     );
