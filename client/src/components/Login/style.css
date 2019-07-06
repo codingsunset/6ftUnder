@@ -181,6 +181,9 @@ html { /* html is full screen. */
         color: rgb(240, 240, 12);
         text-align: center;
     }
+    h6 a{
+        color: #f4eff5
+    }
    
     h6 a:hover {
         color: #ff0000;
