@@ -8,8 +8,8 @@ router.route("/")
 
 // Matches with "/api/records/:id"
 router
-  .route("/:id")
-  .get(recordsController.findById)
+  .route("/:user_id")
+  .get(recordsController.findByUserId)
   .put(recordsController.update)
   .delete(recordsController.remove);
 

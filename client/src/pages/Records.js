@@ -20,7 +20,7 @@ class Records extends Component {
   }
 
   loadRecords = () => {
-    API.getRecords()
+    API.getRecords(sessionStorage.user_id)
       .then(res =>
         this.setState({
           records: res.data,
@@ -51,20 +51,27 @@ class Records extends Component {
       API.saveRecord({
         vegetableName: this.state.vegetableName,
         vegetableAmount: this.state.vegetableAmount,
-        notes: this.state.notes
+        notes: this.state.notes,
+        user_id: sessionStorage.user_id
       })
         .then(res => this.loadRecords())
         .catch(err => console.log(err));
     }
   };
 
+  handleLogOut = () => {
+    API.userLogOut();
+  }
+
   render() {
     return (
       <Container fluid>
+        <h1> Hello {sessionStorage.user_name} </h1>
+        <FormBtn onClick={this.handleLogOut}> Log Out </FormBtn>
         <Row>
           <Col size="md-6">
             <Jumbotron>
-              <h1>Input fields of data items</h1>
+              <h1>Input Fields</h1>
             </Jumbotron>
             <form>
               <Input

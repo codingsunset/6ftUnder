@@ -131,7 +131,8 @@ const recordSeed = [
     notes:
       "a kind of green thing",
     date: new Date(Date.now()),
-    user_id: '5d1d02cc3692053b78badb5b'
+    user_id: "5d20d8c0622f1a25f415f436"
+    
   },
   {
     vegetableName: "celery",
@@ -139,7 +140,7 @@ const recordSeed = [
     notes:
       "another kind of green thing",
     date: new Date(Date.now()),
-    user_id: '5d1d02cc3692053b78badb5b'
+    user_id: "5d20d8c0622f1a25f415f436"
   },
   {
     vegetableName: "Carrot",
@@ -147,7 +148,7 @@ const recordSeed = [
     notes:
       "a kind of orange thing",
     date: new Date(Date.now()),
-    user_id: '5d1d02cc3692053b78badb5b'
+    user_id: "5d20d8c0622f1a25f415f436"
   },
   {
     vegetableName: "Magic Mushroom",
@@ -155,7 +156,7 @@ const recordSeed = [
     notes:
       "a kind of strange thing",
     date: new Date(Date.now()),
-    user_id: '5d1d02cc3692053b78badb5b'
+    user_id: "5d20d8c0622f1a25f415f436"
   },
   {
     vegetableName: "Egg shells",
@@ -163,7 +164,8 @@ const recordSeed = [
     notes:
       "a kind of crispy thing?",
     date: new Date(Date.now()),
-    user_id: '5d20ca960c8e7f4920fc212c'
+    user_id: "5d20d8c0622f1a25f415f437"
+    
   },
   {
     vegetableName: "asparagus",
@@ -171,7 +173,7 @@ const recordSeed = [
     notes:
       "ah-mino acids",
     date: new Date(Date.now()),
-    user_id: '5d20ca960c8e7f4920fc212c'
+    user_id: "5d20d8c0622f1a25f415f437"
   },  
 ]
 

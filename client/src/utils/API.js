@@ -2,8 +2,8 @@ import axios from "axios";
 
 export default {
   // Gets all books
-  getRecords: function () {
-    return axios.get("/api/records");
+  getRecords: function (user_id) {
+    return axios.get("/api/records/" + user_id);
   },
   // Gets the book with the given id
   getRecord: function (id) {
@@ -26,5 +26,11 @@ export default {
   userSignUp: function (userAuth) {
     console.log("userSignUp() called", userAuth);
     return axios.post("/api/auth/signup", userAuth)
+  },
+  userLogOut: function (userAuth) {
+    // userAuth: {email:email,password:password}
+    console.log("userLogOut() called", userAuth);
+    sessionStorage.clear();
+    window.location.href="/";
   }
 };
