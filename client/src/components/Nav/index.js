@@ -4,7 +4,7 @@
    return (
      <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
        <a className="navbar-brand" href="/">
-         6ftUnder - household compost logging and viewing app
+        Books-React
        </a>
      </nav>
    );

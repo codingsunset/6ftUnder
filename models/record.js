@@ -5,10 +5,11 @@ const Schema = mongoose.Schema;
 //then link record to a user
 
 const recordSchema = new Schema({
-  vegetableName: { type: String, required: true },
-  vegetableAmount: { type: Number, required: true },
-  notes: String,
-  date: { type: Date, default: Date.now }
+  title: { type: String, required: true },
+  authors: { type: String, required: true },
+  description: String,
+  image: String,
+  link: String
 });
 
 const Record = mongoose.model("Record", recordSchema);

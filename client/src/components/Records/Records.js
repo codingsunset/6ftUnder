@@ -1,200 +1,74 @@
 import React, { Component } from "react";
-import DeleteBtn from "../DeleteBtn";
-import Jumbotron from "../Jumbotron";
+
 import API from "../../utils/API";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../Grid";
 import { List, ListItem } from "../List";
 import { Input, TextArea, FormBtn } from "../Form";
-import Modal from '../Modal';
-import AddRecord from "../AddRecord";
-import ReactTooltip from 'react-tooltip'
-import Autosuggest from 'react-autosuggest';
-import fruitsVeggies from '../../utils/list';
+
+
 import "./style.css";
 
-const getSuggestions = value => {
-  const inputValue = value.trim().toLowerCase();
-  const inputLength = inputValue.length;
-
-  return inputLength === 0
-    ? []
-    : fruitsVeggies.filter(
-        lang => lang.name.toLowerCase().slice(0, inputLength) === inputValue
-      );
-};
-
-const getSuggestionValue = suggestion => suggestion.name;
-
-const renderSuggestion = suggestion => <div className = "form-control">{suggestion.name}</div>;
-
-
-class Records extends Component {
+class Record extends Component {
   state = {
-    value: "",
-    suggestions: [],
-    records: [],
-    vegetableName: "",
-    vegetableAmount: "",
-    notes: "",
-    showModal: false,
-  };
-
-  onChange = (event, { newValue }) => {
-    this.setState({
-      value: newValue
-    });
-    // console.log("newValue is " + newValue)
-    // console.log("this.state ", this.state)
-  };
-
-  onSuggestionsFetchRequested = ({ value }) => {
-    this.setState({
-      suggestions: getSuggestions(value)
-    });
-  };
-
-  onSuggestionsClearRequested = () => {
-    this.setState({
-      suggestions: []
-    });
-  };
-  componentDidMount() {
-    this.loadRecords();
-  }
-
-  loadRecords = () => {
-    API.getRecords()
-      .then(res => {
-        console.log(res);
-        this.setState({ records: res.data, vegetableName: "", vegetableAmount: "", notes: "" })
-        }
-      )
-      .catch(err => console.log(err));
-  };
-
-  deleteRecord = id => {
-    API.deleteRecord(id)
-      .then(res => this.loadRecords())
-      .catch(err => console.log(err));
+    books: [],
+    q: "",
+    message: "Search For A Book To Begin!"
   };
 
   handleInputChange = event => {
     const { name, value } = event.target;
-    // console.log( "Name and value on handleinputchange " + name + value)
     this.setState({
       [name]: value
     });
   };
 
+  getBooks = () => {
+    API.getBooks(this.state.q)
+      .then(res =>
+        this.setState({
+          books: res.data
+        })
+      )
+      .catch(() =>
+        this.setState({
+          books: [],
+          message: "No New Books Found, Try a Different Query"
+        })
+      );
+  };
+
   handleFormSubmit = event => {
     event.preventDefault();
-      if(!this.state.records){
-        this.setState({
-          showModal: true
-        })
-      }
-      API.saveRecord({
-        vegetableName: this.state.value,
-        vegetableAmount: this.state.vegetableAmount,
-        notes: this.state.notes
-      })
-        .then(res => this.loadRecords())
-        .catch(err => console.log(err));
+    this.getBooks();
   };
-  
-  hideModal = () => {
-    this.setState({
-      showModal: false
-    })
-  }
+
+  handleBookSave = id => {
+    const book = this.state.books.find(book => book.id === id);
+
+    API.saveBook({
+      googleId: book.id,
+      title: book.volumeInfo.title,
+      subtitle: book.volumeInfo.subtitle,
+      link: book.volumeInfo.infoLink,
+      authors: book.volumeInfo.authors,
+      description: book.volumeInfo.description,
+      image: book.volumeInfo.imageLinks.thumbnail
+    }).then(() => this.getBooks());
+  };
 
   render() {
-    const { value, suggestions } = this.state;
+    return(
+      console.log(
+        book.id + 
+        book.volumeInfo.title + 
+        book.volumeInfo.subtitle +
+        book.volumeInfo.infoLink +
+        book.volumeInfo.authors.join(", ")+
+        book.volumeInfo.description+
+        book.volumeInfo.imageLinks.thumbnail
 
-    const inputProps = {
-      className: "form-control",
-      placeholder: "Type a veggie or fruit!",
-      value,
-      onChange: this.onChange
-    };
-    return (
-      <Container fluid>
-        <Modal showModal={this.state.showModal} hideModal={this.hideModal}/>
-        <Row>
-          <Col size="md-6">
-            <Jumbotron>
-              <h1>Log Your Compost</h1>
-            </Jumbotron>
-            <form>
-              <Autosuggest
-                suggestions={suggestions}
-                onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-                onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-                getSuggestionValue={getSuggestionValue}
-                renderSuggestion={renderSuggestion}
-                inputProps={inputProps }
-              />  
-              <Input
-                value={this.state.vegetableAmount}
-                onChange={this.handleInputChange}
-                name="vegetableAmount"
-                placeholder="Amount of veggie (required)"
-              />
-              <Input
-                value={this.state.date}
-                onChange={this.handleInputChange}
-                name="date"
-                placeholder="Date (MM/DD/YYYY)"
-              />
-              <TextArea
-                value={this.state.notes}
-                onChange={this.handleInputChange}
-                name="notes"
-                id="text-area"
-                placeholder="notes (optional)"
-              />
-              <FormBtn
-                disabled={!this.state.vegetableAmount && !this.state.vegetableName}
-                onClick={this.handleFormSubmit}
-              >
-                Submit Record
-              </FormBtn>
-            </form>
-          </Col>
-          <Col size="md-6 sm-12">
-            <Jumbotron>
-              <h1>Your Composting History</h1>
-            </Jumbotron>
-            {this.state.records.length ? (
-              <List>
-                {this.state.records.map(record => (
-                  <ListItem key={record._id}>
-                    <ReactTooltip id={record._id} effect="solid">
-                      <ul>
-                        {/* {record.vegetableName.map(vegetableName => (
-                          <span>{vegetableName}</span>
-                        ))} */}
-                        <li><span>{record.vegetableName}</span> : <span>{record.vegetableAmount}</span></li>
-                      </ul>
-                    </ReactTooltip> 
-                    <Link to={"/records/" + record._id}>
-                      <strong>
-                        {record.vegetableName} of {record.vegetableAmount} pounds
-                      </strong>
-                    </Link>
-                    {/* <DeleteBtn onClick={() => this.deleteRecord(record._id)} /> */}
-                  </ListItem>
-                ))}
-              </List>
-            ) : (
-                <h3>No Results to Display</h3>
-              )}
-          </Col>
-        </Row>
-      </Container>
-    );
+    ))
   }
 }
-
-export default Records;
+export default Record
