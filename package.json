@@ -4,11 +4,12 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "npm i && cd client && npm i && cd .. && npm run build && mv client/build/* /usr/share/nginx/html && node server",
+    "deploy": "npm i && cd client && npm i && cd .. && npm run build && rm /usr/share/nginx/html/* -r && mv client/build/* /usr/share/nginx/html && node server",
     "start:prod": "node server.js",
     "start:dev": "concurrently \"nodemon server\" \"npm run client\"",
-    "client": "cd client && npm run start",
-    "seed": "node scripts/seedDB.js",
+    "client": "cd client && npm start",
+    "seed-users": "node scripts/seedDB_users.js",
+    "seed-records": "node scripts/seedDB_records.js",
     "install": "cd client && npm install",
     "build": "cd client && npm run build",
     "heroku-postbuild": "npm run build"
@@ -21,9 +22,16 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "bcryptjs": "^2.4.3",
+    "connect-flash": "^0.1.1",
+    "ejs": "^2.6.2",
     "express": "^4.16.3",
+    "express-ejs-layouts": "^2.5.0",
+    "express-session": "^1.16.2",
     "if-env": "^1.0.4",
     "mongoose": "^5.3.16",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0"
     "react-tooltip": "^3.10.0"
   }
 }

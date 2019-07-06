@@ -1,11 +1,12 @@
 const mongoose = require("mongoose");
 const db = require("../models");
 
-// This file empties the Books collection and inserts the books below
+// This file empties the records collection and inserts the records below
 
 mongoose.connect(
   process.env.MONGODB_URI ||
-  "mongodb://localhost/sixFeetUnderDB"
+  "mongodb://localhost/sixFeetUnderDB",
+  { useNewUrlParser: true }
 );
 
 // const recordSeed = [
@@ -129,29 +130,51 @@ const recordSeed = [
     vegetableAmount: 12.34,
     notes:
       "a kind of green thing",
-    date: new Date(Date.now())
+    date: new Date(Date.now()),
+    user_id: "5d20d8c0622f1a25f415f436"
+    
   },
   {
     vegetableName: "celery",
     vegetableAmount: 56.78,
     notes:
       "another kind of green thing",
-    date: new Date(Date.now())
+    date: new Date(Date.now()),
+    user_id: "5d20d8c0622f1a25f415f436"
   },
   {
     vegetableName: "Carrot",
     vegetableAmount: 90.12,
     notes:
       "a kind of orange thing",
-    date: new Date(Date.now())
+    date: new Date(Date.now()),
+    user_id: "5d20d8c0622f1a25f415f436"
   },
   {
     vegetableName: "Magic Mushroom",
     vegetableAmount: 0.01,
     notes:
       "a kind of strange thing",
-    date: new Date(Date.now())
-  }
+    date: new Date(Date.now()),
+    user_id: "5d20d8c0622f1a25f415f436"
+  },
+  {
+    vegetableName: "Egg shells",
+    vegetableAmount: 0.01,
+    notes:
+      "a kind of crispy thing?",
+    date: new Date(Date.now()),
+    user_id: "5d20d8c0622f1a25f415f437"
+    
+  },
+  {
+    vegetableName: "asparagus",
+    vegetableAmount: 0.01,
+    notes:
+      "ah-mino acids",
+    date: new Date(Date.now()),
+    user_id: "5d20d8c0622f1a25f415f437"
+  },  
 ]
 
 db.Record
@@ -165,3 +188,5 @@ db.Record
     console.error(err);
     process.exit(1);
   });
+
+
