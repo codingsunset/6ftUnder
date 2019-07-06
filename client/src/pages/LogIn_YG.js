@@ -16,7 +16,8 @@ class LogIn extends Component {
     this.state = {
       email: "",
       password: "",
-      toDashboard: false
+      toDashboard: false,
+      showError: false
     };
   }
   // state = {
@@ -70,7 +71,10 @@ class LogIn extends Component {
           //   console.log(res.status);
           // }
         })
-        .catch(err => console.log(err, "wrong credentials"));
+        .catch(err => {
+          console.log(err, "wrong credentials");
+          this.setState({ showError: true });
+        });
       // API.saveRecord({
       //   vegetableName: this.state.vegetableName,
       //   vegetableAmount: this.state.vegetableAmount,
@@ -125,6 +129,11 @@ class LogIn extends Component {
                   <p className="lead mt-4">
                     No Account? <a href="/signup">Register</a>
                   </p>
+                  {this.state.showError &&
+                    <p>
+                      Log In is not successful :(
+                    </p>
+                  }
                 </div>
               </div>
             </div>
