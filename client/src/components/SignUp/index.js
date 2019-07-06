@@ -8,7 +8,7 @@ class SignUp extends React.Component{
         <div className="container signup-container">
           <h1 className="header signUp-header">6ft Under</h1>
           
-            <h2 className="title">SIGN UP</h2>
+            <h2 className="signup-h2 title">SIGN UP</h2>
             <div className="signup-field">
               <label htmlFor="name">First Name</label>
               <input
@@ -50,7 +50,7 @@ class SignUp extends React.Component{
                 required
               />
             </div>
-            <fieldset>
+            <fieldset className="fieldset-signup">
               <legend className="gender">Choose gender:</legend>
               <div className="pretty p-icon p-round p-plain p-smooth p-bigger">
                 <input type="radio" defaultValue="male" name="gender" />

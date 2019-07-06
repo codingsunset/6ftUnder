@@ -135,11 +135,13 @@ form {
     background: transparent;
 }
 
-.title {
+.signup-h2 {
     padding: 10px 0px;
     border-bottom: 4px solid;
     font-size: 1rem;
     margin-bottom: 15px;
+    width: 20%;
+    margin-left: 40%;
 }
 
 .signup-field {
@@ -188,4 +190,12 @@ input[type="submit"]:hover {
 
 label {
     display: block;
+}
+.fieldset-signup {
+    display: block;
+}
+.signup-button {
+    display: block;
+    margin-left: 0;
+    width: 10%;
 }
