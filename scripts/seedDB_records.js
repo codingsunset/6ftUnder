@@ -130,29 +130,49 @@ const recordSeed = [
     vegetableAmount: 12.34,
     notes:
       "a kind of green thing",
-    date: new Date(Date.now())
+    date: new Date(Date.now()),
+    user_id: '5d1d02cc3692053b78badb5b'
   },
   {
     vegetableName: "celery",
     vegetableAmount: 56.78,
     notes:
       "another kind of green thing",
-    date: new Date(Date.now())
+    date: new Date(Date.now()),
+    user_id: '5d1d02cc3692053b78badb5b'
   },
   {
     vegetableName: "Carrot",
     vegetableAmount: 90.12,
     notes:
       "a kind of orange thing",
-    date: new Date(Date.now())
+    date: new Date(Date.now()),
+    user_id: '5d1d02cc3692053b78badb5b'
   },
   {
     vegetableName: "Magic Mushroom",
     vegetableAmount: 0.01,
     notes:
       "a kind of strange thing",
-    date: new Date(Date.now())
-  }
+    date: new Date(Date.now()),
+    user_id: '5d1d02cc3692053b78badb5b'
+  },
+  {
+    vegetableName: "Egg shells",
+    vegetableAmount: 0.01,
+    notes:
+      "a kind of crispy thing?",
+    date: new Date(Date.now()),
+    user_id: '5d20ca960c8e7f4920fc212c'
+  },
+  {
+    vegetableName: "asparagus",
+    vegetableAmount: 0.01,
+    notes:
+      "ah-mino acids",
+    date: new Date(Date.now()),
+    user_id: '5d20ca960c8e7f4920fc212c'
+  },  
 ]
 
 db.Record

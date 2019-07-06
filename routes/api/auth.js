@@ -16,8 +16,9 @@ const { forwardAuthenticated } = require('../../config/auth');
 router.post('/login',
     passport.authenticate('local'),
     (req, res, next) => {
-        console.log("auth success", req.user._id)
-        res.send(req.user._id);
+        console.log("auth success", req.user)
+        const { _id, name, email } = req.user;
+        res.send({ _id: _id, name: name, email: email });
     }
 );
 

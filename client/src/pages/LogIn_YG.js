@@ -59,6 +59,10 @@ class LogIn extends Component {
           // console.log(res.status);
           if (res.status === 200) {
             console.log(res.status, res.data);
+            const { _id, name, email } = res.data;
+            sessionStorage.user_id = _id
+            sessionStorage.user_name = name
+            sessionStorage.user_email = email
             this.setState({ toDashboard: true })
           }
           // have never reached here:
@@ -119,7 +123,7 @@ class LogIn extends Component {
                     </FormBtn> */}
                   </form>
                   <p className="lead mt-4">
-                    No Account? <a href="/users/register">Register</a>
+                    No Account? <a href="/signup">Register</a>
                   </p>
                 </div>
               </div>

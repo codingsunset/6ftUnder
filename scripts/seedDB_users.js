@@ -13,13 +13,13 @@ const userSeed = [
     {
         name: "anton",
         email: "anton@gmail.com",
-        password: "123456",
+        password: "$2a$10$N6WweL7QRqS2S5E2mDOXvuHb1V.GFKqftw1aFqJ6igPlTQ1nOvnfC",
         date: new Date(Date.now())
     },
     {
         name: "bruce",
         email: "bruce@gmail.com",
-        password: "123456",
+        password: "$2a$10$N6WweL7QRqS2S5E2mDOXvuHb1V.GFKqftw1aFqJ6igPlTQ1nOvnfC",
         date: new Date(Date.now())
     }
 ]
