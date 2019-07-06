@@ -8,7 +8,8 @@ const recordSchema = new Schema({
   vegetableName: { type: String, required: true },
   vegetableAmount: { type: Number, required: true },
   notes: String,
-  date: { type: Date, default: Date.now }
+  date: { type: Date, default: Date.now },
+  user_id: String
 });
 
 const Record = mongoose.model("Record", recordSchema);

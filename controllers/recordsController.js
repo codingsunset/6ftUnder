@@ -2,14 +2,22 @@ const db = require("../models");
 
 // Defining methods for the booksController
 module.exports = {
-  findAll: function(req, res) {
+  findAll: function (req, res) {
     db.Record
       .find(req.query)
       .sort({ date: -1 })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
-  findById: function(req, res) {
+  findByUserId: function (req, res) {
+    console.log('called findByUserId with params: ', req.params);
+    db.Record
+      .find({user_id:req.params.user_id})
+      .sort({ date: -1 })
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
+  findById: function (req, res) {
     //dummy data to link up server to react
     res.send("get request received")
     // db.Record
@@ -17,6 +25,7 @@ module.exports = {
     //   .then(dbModel => res.json(dbModel))
     //   .catch(err => res.status(422).json(err));
   },
+  
   create: function(req, res) {
     console.log("Req.body " + req.body)
     db.Record
@@ -24,13 +33,13 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
-  update: function(req, res) {
+  update: function (req, res) {
     db.Record
       .findOneAndUpdate({ _id: req.params.id }, req.body)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
-  remove: function(req, res) {
+  remove: function (req, res) {
     db.Record
       .findById({ _id: req.params.id })
       .then(dbModel => dbModel.remove())

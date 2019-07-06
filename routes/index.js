@@ -1,13 +1,16 @@
-const path = require("path");
-const router = require("express").Router();
-const apiRoutes = require("./api");
+const express = require('express');
+const router = express.Router();
+const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
 
-// API Routes
-router.use("/api", apiRoutes);
+// Welcome Page
+router.get('/', forwardAuthenticated, (req, res) => res.render('welcome'));
+// router.get('/', forwardAuthenticated, (req, res) => res.send('welcome page'));
 
-// If no API routes are hit, send the React app
-router.use(function(req, res) {
-  res.sendFile(path.join(__dirname, "../client/build/index.html"));
-});
+// Dashboard
+router.get('/dashboard', ensureAuthenticated, (req, res) =>
+  res.render('dashboard', {
+    user: req.user
+  })
+);
 
 module.exports = router;
