@@ -119,7 +119,7 @@ body {
     font-family: 'Varela Round', sans-serif; /* Very similar font to Helvetica Round.*/
     font-size: 1rem;
     font-weight: bold;
-    background: url('http://hyattsvillelife.com/wp-content/uploads/2017/01/cartoon-plant-growing.png'); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: url("../../assets/Images/signup-background.png"); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     background-repeat: no-repeat; /* Don't repeat gradient in landscape mode on mobile phones*/
     background-attachment: fixed;
     background-size: cover;

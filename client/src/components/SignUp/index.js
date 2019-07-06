@@ -7,18 +7,7 @@ class SignUp extends React.Component{
       <form action method="post" name="myForm" autoComplete="on">
         <div className="container signup-container">
           <h1 className="header signUp-header">6ft Under</h1>
-          <div id="contact-icons">
-            <div className="secondary-head">
-              <a href="https://twitter.com" target="_blank">
-                <i className="fab fa-twitter" />{" "}
-              </a>
-              <a href="https://www.instagram.com" target="_blank">
-                <i className="fab fa-instagram" />
-              </a>
-              <a href="https://www.facebook.com" target="_blank">
-                <i className="fab fa-facebook-f" />
-              </a>
-            </div>
+          
             <h2 className="title">SIGN UP</h2>
             <div className="signup-field">
               <label htmlFor="name">First Name</label>
@@ -83,7 +72,7 @@ class SignUp extends React.Component{
             </div>
             {/* End of class="Form" container. */}
           </div>
-        </div>
+        
       </form>
     );
   }
