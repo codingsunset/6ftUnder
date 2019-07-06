@@ -47,9 +47,10 @@ html { /* html is full screen. */
 .secondary-head {
     display: block;
     text-align: center;
-    color: #0000ff;
+    color: #eeff00;
     
 }
+
 #contact-icons :hover{
     color: rgb(108, 247, 149);
 }
@@ -130,7 +131,7 @@ form{
     }
     
     input[type="button"]{
-    background-color: #2A9AF2;
+    background-color: rgb(8, 146, 252);
     border: none;
     color: #FFFFFF;
     border-radius: 3px;

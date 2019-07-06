@@ -12,7 +12,7 @@ app.use(express.json());
 // app.use(express.static("client/public"));
 
 // Serve up static assets (usually on heroku)
-
+// <<<<<<< passport
 // Connect to the Mongo DB
 mongoose
   .connect(
@@ -20,6 +20,15 @@ mongoose
     { useNewUrlParser: true })
   .then(() => console.log('MongoDB Connected'))
   .catch(err => console.log(err));
+// =======
+// if (process.env.NODE_ENV === "production") {
+//   app.use(express.static("client/build"));
+// } else {
+//   app.use(express.static("client/public"));
+// }
+// // Add routes, both API and view
+// app.use(routes);
+// >>>>>>> dev3
 // mongoose.connect(process.env.MONGODB_URI || "mongodb://<dbuser>:<dbpassword>@ds339177.mlab.com:39177/heroku_ntjjp090");
 
 // Passport Config

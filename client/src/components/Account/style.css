@@ -57,7 +57,7 @@ h2{
     transform: rotateY(180deg);
     }
     
-body {
+.account-wrapper {
     height: 100%;
     display: block;
     margin-top: 5%;
@@ -78,4 +78,16 @@ body {
 form {
     color: #000000;
    
+}
+
+.showDiv {
+    display: block;
+}
+
+.hidden {
+    display: none;
+}
+
+.btn-primary{
+    margin: 10px;
 }

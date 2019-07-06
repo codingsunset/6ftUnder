@@ -1,0 +1,8 @@
+body{
+    margin:0 auto;
+    padding:0;
+}
+html, body, #root, #root>div {
+    height: 100%;
+    width: 100%;
+  }
