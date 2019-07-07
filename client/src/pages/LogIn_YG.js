@@ -172,8 +172,8 @@ class LogIn extends Component {
                       Log In
                     </FormBtn> */}
                   {/* </form> */}
-                  <p className="lead mt-4">
-                    No Account? <a href="/signup">Sign Up</a>
+                  <p className="lead mt-4 text-register">
+                    No Account? <a className="text-account" href="/signup">Sign Up</a>
                   </p>
                     {this.state.showError &&
                       <p>
