@@ -6,11 +6,11 @@ import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
-//import Modal from '../components/Modal';
+import Modal from '../components/Modal';
 import ReactTooltip from 'react-tooltip'
 import Autosuggest from 'react-autosuggest';
 import fruitsVeggies from '../../utils/list';
-import "./style.css";
+//import "./style.css";
 
 const getSuggestions = value => {
   const inputValue = value.trim().toLowerCase();
