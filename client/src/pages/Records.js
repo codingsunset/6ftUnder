@@ -9,7 +9,7 @@ import { Input, TextArea, FormBtn } from "../components/Form";
 import Modal from '../components/Modal';
 import ReactTooltip from 'react-tooltip'
 import Autosuggest from 'react-autosuggest';
-import fruitsVeggies from '../../utils/list';
+import fruitsVeggies from '../utils/list';
 //import "./style.css";
 
 const getSuggestions = value => {
