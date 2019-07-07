@@ -29,7 +29,8 @@ const renderSuggestion = suggestion => <div className = "form-control">{suggesti
 
 class Records extends Component {
   
-  state= {value: "",
+  state= {
+    value: "",
     suggestions: [],
     records: [],
     vegetableName: "",
@@ -56,20 +57,23 @@ class Records extends Component {
       suggestions: []
     });
   };
+
   componentDidMount() {
     this.loadRecords();
   }
 
   loadRecords = () => {
     API.getRecords(sessionStorage.user_id)
-      .then(res =>
+      .then(res => {
+        console.log(res);
         this.setState({
           records: res.data,
           vegetableName: "",
           vegetableAmount: "",
           notes: ""
         })
-      )
+      }
+    )
       .catch(err => console.log(err));
   };
 
@@ -95,14 +99,14 @@ class Records extends Component {
     }
 
       API.saveRecord({
-        vegetableName: this.state.vegetableName,
+        vegetableName: this.state.value,
         vegetableAmount: this.state.vegetableAmount,
         notes: this.state.notes,
         user_id: sessionStorage.user_id
       })
         .then(res => this.loadRecords())
         .catch(err => console.log(err));
-    }
+    };
   
     hideModal = () => {
       this.setState({
@@ -147,16 +151,16 @@ class Records extends Component {
               />  
 
               <Input
-                value={this.state.vegetableName}
-                onChange={this.handleInputChange}
-                name="vegetableName"
-                placeholder="Name of veggie (required)"
-              />
-              <Input
                 value={this.state.vegetableAmount}
                 onChange={this.handleInputChange}
                 name="vegetableAmount"
                 placeholder="Amount of veggie (required)"
+              />
+              <Input
+                value={this.state.date}
+                onChange={this.handleInputChange}
+                name="date"
+                placeholder="Date (MM/DD/YYYY)"
               />
               <TextArea
                 value={this.state.notes}
