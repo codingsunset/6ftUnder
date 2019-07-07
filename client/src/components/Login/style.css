@@ -43,6 +43,7 @@ h1 {
     padding: 10px;
     margin: 0;
     float: center;
+    margin-top: 50px;
     }
 @-webkit-keyframes glow {
     from {
@@ -65,6 +66,7 @@ h1 {
 .login-button {
     background: #2A9AF2;
     border: white;
+    width: 30%;
 }
 .text-register{
     color: white;
@@ -100,7 +102,7 @@ label {
 }
     
 .login-form{
-    width: 50%;
+    width: 80%;
     max-height: 70%;
     background: transparent;
     box-shadow:  rgb(252, 26, 120);
@@ -136,6 +138,10 @@ label {
     cursor: text;
     margin-left: 0;
     display: block;
+    }
+
+    .form-control{
+        width: 100%;
     }
     
     .floating-input input{

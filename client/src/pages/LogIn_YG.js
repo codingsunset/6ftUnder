@@ -176,7 +176,7 @@ class LogIn extends Component {
                     No Account? <a className="text-account" href="/signup">Sign Up</a>
                   </p>
                     {this.state.showError &&
-                      <p>
+                      <p className="warning-text">
                         Log In is not successful :(
                       </p>
                     }
