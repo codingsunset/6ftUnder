@@ -1,19 +1,16 @@
 import React, { Component } from "react";
-import DeleteBtn from "../components/DeleteBtn";
-import Jumbotron from "../components/Jumbotron";
-import API from "../utils/API";
+import DeleteBtn from "../DeleteBtn";
+import Jumbotron from "../Jumbotron";
+import API from "../../utils/API";
 import { Link } from "react-router-dom";
-import { Col, Row, Container } from "../components/Grid";
-import { List, ListItem } from "../components/List";
-import { Input, TextArea, FormBtn } from "../components/Form";
-import Modal from '../components/Modal';
+import { Col, Row, Container } from "../Grid";
+import { List, ListItem } from "../List";
+import { Input, TextArea, FormBtn } from "../Form";
+import Modal from '../Modal';
 import ReactTooltip from 'react-tooltip'
 import Autosuggest from 'react-autosuggest';
-import fruitsVeggies from '../utils/list';
-import { Line } from 'react-chartjs-2';
-import Moment from 'moment';
-//import "./style.css";
-import "../components/Records/style.css";
+import fruitsVeggies from '../../utils/list';
+import "./style.css";
 
 const getSuggestions = value => {
   const inputValue = value.trim().toLowerCase();
@@ -31,7 +28,6 @@ const getSuggestionValue = suggestion => suggestion.name;
 const renderSuggestion = suggestion => <div className="form-control">{suggestion.name}</div>;
 
 class Records extends Component {
-
   state = {
     value: "",
     suggestions: [],
@@ -49,6 +45,7 @@ class Records extends Component {
     // console.log("newValue is " + newValue)
     // console.log("this.state ", this.state)
   };
+
   onSuggestionsFetchRequested = ({ value }) => {
     this.setState({
       suggestions: getSuggestions(value)
@@ -60,7 +57,6 @@ class Records extends Component {
       suggestions: []
     });
   };
-
   componentDidMount() {
     this.loadRecords();
   }
@@ -88,6 +84,7 @@ class Records extends Component {
 
   handleInputChange = event => {
     const { name, value } = event.target;
+    // console.log( "Name and value on handleinputchange " + name + value)
     this.setState({
       [name]: value
     });
@@ -100,7 +97,6 @@ class Records extends Component {
         showModal: true
       })
     }
-
     API.saveRecord({
       vegetableName: this.state.value,
       vegetableAmount: this.state.vegetableAmount,
@@ -122,41 +118,6 @@ class Records extends Component {
   }
 
   render() {
-
-    let weight = [];
-
-    const data = {
-      labels: [],
-      datasets: [
-        {
-          label: 'Weight in OZ',
-          data: weight,
-          fill: false,          // Don't fill area under the line
-          borderColor: 'green'  // Line color
-        }
-      ],
-      options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }]
-        }
-    }
-    }
-    
-
-    const moment = require('moment');
-    let i;
-
-    for (i=0; i<this.state.records.length; i++) {
-      data.labels.push(moment(this.state.records[i].date).format('MMMM Do YYYY'))
-      weight.push(this.state.records[i].vegetableAmount)
-    }
-
-
-
     const { value, suggestions } = this.state;
 
     const inputProps = {
@@ -169,22 +130,11 @@ class Records extends Component {
     return (
       <Container fluid>
         <h1> Hello {sessionStorage.user_name} </h1>
-        <FormBtn onClick={this.handleLogOut}> Log Out </FormBtn>
-        <Modal showModal={this.state.showModal} hideModal={this.hideModal}/>
-        <div className="App">
-        <header className="App-header">
-          <h5>Weight of compost by day</h5>
-        </header>
-        <article className="canvas-container">
-          <Line data={data}/>
-        </article>
-      </div>
         <Modal showModal={this.state.showModal} hideModal={this.hideModal} />
-
         <Row>
           <Col size="md-6">
             <Jumbotron>
-              <h1>Input Fields</h1>
+              <h1>Log Your Compost</h1>
             </Jumbotron>
             <form>
               <Autosuggest
@@ -193,12 +143,8 @@ class Records extends Component {
                 onSuggestionsClearRequested={this.onSuggestionsClearRequested}
                 getSuggestionValue={getSuggestionValue}
                 renderSuggestion={renderSuggestion}
-                inputProps={inputProps }
-              />  
-      <br />
                 inputProps={inputProps}
               />
-
               <Input
                 value={this.state.vegetableAmount}
                 onChange={this.handleInputChange}
@@ -215,6 +161,7 @@ class Records extends Component {
                 value={this.state.notes}
                 onChange={this.handleInputChange}
                 name="notes"
+                id="text-area"
                 placeholder="notes (optional)"
               />
               <FormBtn
@@ -227,7 +174,7 @@ class Records extends Component {
           </Col>
           <Col size="md-6 sm-12">
             <Jumbotron>
-              <h1>Data items readout</h1>
+              <h1>Your Composting History</h1>
             </Jumbotron>
             {this.state.records.length ? (
               <List>
@@ -243,16 +190,18 @@ class Records extends Component {
                     </ReactTooltip>
                     <Link to={"/records/" + record._id}>
                       <strong>
-                        {record.vegetableName} of {record.vegetableAmount} oz
+                        {record.vegetableName} of {record.vegetableAmount} pounds
                       </strong>
                     </Link>
-                    <DeleteBtn onClick={() => this.deleteRecord(record._id)} />
+                    {/* <DeleteBtn onClick={() => this.deleteRecord(record._id)} /> */}
                   </ListItem>
                 ))}
               </List>
             ) : (
                 <h3>No Results to Display</h3>
               )}
+            <p></p>
+            <FormBtn onClick={this.handleLogOut}> Log Out </FormBtn>
           </Col>
         </Row>
       </Container>

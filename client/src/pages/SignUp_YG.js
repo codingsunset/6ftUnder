@@ -7,6 +7,7 @@ import { Col, Row, Container } from "../components/Grid";
 // import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
 import { Redirect } from 'react-router-dom';
+import "../components/SignUp/style.css";
 
 class SignUp extends Component {
   constructor(props) {
@@ -103,79 +104,82 @@ class SignUp extends Component {
     const messageElement = message.map(item => <p> {item.msg} </p>);
     // this.setState({ message: [] });
     return (
-      <Container fluid>
-        <Row>
-          <Col size="md-12">
-            <div className="row mt-5">
-              <div className="col-md-6 m-auto">
-                <div className="card card-body">
-                  <h1 className="text-center mb-3">
-                    <i className="fas fa-user-plus"></i>
-                    Sign Up
-                  </h1>
-                  {/* <% include ./partials/messages %> */}
-                  <form action="/users/register" method="POST">
-                    <div className="form-group">
-                      <label htmlFor="name">Name</label>
-                      <input
-                        type="name"
-                        id="name"
-                        name="name"
-                        className="form-control"
-                        placeholder="Enter Name"
-                        // value="<%= typeof name != 'undefined' ? name : '' %>"
-                        onChange={this.handleInputChange}
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="email">Email</label>
-                      <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        className="form-control"
-                        placeholder="Enter Email"
-                        // value="<%= typeof email != 'undefined' ? email : '' %>"
-                        onChange={this.handleInputChange}
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="password">Password</label>
-                      <input
-                        type="password"
-                        id="password"
-                        name="password"
-                        className="form-control"
-                        placeholder="Create Password"
-                        // value="<%= typeof password != 'undefined' ? password : '' %>"
-                        onChange={this.handleInputChange}
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="password2">Confirm Password</label>
-                      <input
-                        type="password"
-                        id="password2"
-                        name="password2"
-                        className="form-control"
-                        placeholder="Confirm Password"
-                        // value="<%= typeof password2 != 'undefined' ? password2 : '' %>"
-                        onChange={this.handleInputChange}
-                      />
-                    </div>
-                    <button type="submit" onClick={this.handleFormSubmit} className="btn btn-primary btn-block">
+      <div className='signup-page'>
+        <Container fluid>
+          <Row>
+            <Col size="md-12">
+            <h1 className="header signUp-header">6ft Under</h1>
+              <div className="row mt-5">
+                <div className="col-md-6 m-auto">
+                  <div className="card card-body">
+                    <h1 className="text-center mb-3 h1-text">
+                      <i className="fas fa-user-plus"></i>
                       Sign Up
-                    </button>
-                  </form>
-                  <p className="lead mt-4">Have An Account? <a href="/login">Log in</a></p>
-                  {messageElement}
+                    </h1>
+                    {/* <% include ./partials/messages %> */}
+                    <form className="signup-form" action="/users/register" method="POST">
+                      <div className="form-group">
+                        <label className="signup-labels" htmlFor="name">Name</label>
+                        <input
+                          type="name"
+                          id="name"
+                          name="name"
+                          className="form-control"
+                          placeholder="Enter Name"
+                          // value="<%= typeof name != 'undefined' ? name : '' %>"
+                          onChange={this.handleInputChange}
+                        />
+                      </div>
+                      <div className="form-group">
+                        <label className="signup-labels" htmlFor="email">Email</label>
+                        <input
+                          type="email"
+                          id="email"
+                          name="email"
+                          className="form-control"
+                          placeholder="Enter Email"
+                          // value="<%= typeof email != 'undefined' ? email : '' %>"
+                          onChange={this.handleInputChange}
+                        />
+                      </div>
+                      <div className="form-group">
+                        <label className="signup-labels" htmlFor="password">Password</label>
+                        <input
+                          type="password"
+                          id="password"
+                          name="password"
+                          className="form-control"
+                          placeholder="Create Password"
+                          // value="<%= typeof password != 'undefined' ? password : '' %>"
+                          onChange={this.handleInputChange}
+                        />
+                      </div>
+                      <div className="form-group">
+                        <label className="signup-labels" htmlFor="password2">Confirm Password</label>
+                        <input
+                          type="password"
+                          id="password2"
+                          name="password2"
+                          className="form-control"
+                          placeholder="Confirm Password"
+                          // value="<%= typeof password2 != 'undefined' ? password2 : '' %>"
+                          onChange={this.handleInputChange}
+                        />
+                      </div>
+                      <button type="submit" onClick={this.handleFormSubmit} className="btn btn-primary btn-block signup-button">
+                        Sign Up
+                      </button>
+                    </form>
+                    <p className="lead mt-4 text-1">Have An Account? <a href="/login">Log in</a></p>
+                    {messageElement}
+                  </div>
                 </div>
               </div>
-            </div>
 
-          </Col>
-        </Row>
-      </Container>
+            </Col>
+          </Row>
+        </Container>
+      </div>
     );
   };
 }

@@ -38,28 +38,21 @@ class Account extends React.Component {
           <br />
           <form action="profile form">
             Year to date Compost:
-            <input type="text" name="YTD compost" />
+            <input type="text" className="input-text" name="YTD compost" />
             <br />
             <br />
             AVG Compost/house:
-            <input type="text" name="AVG compost" />
+            <input type="text" className="input-text" name="AVG compost" />
             <br />
             <br />
             Percent of compost:
-            <input type="text" name="% compost" />
+            <input type="text" className="input-text" name="% compost" />
             <br />
             <br />
+            
             <button
               type="button"
-              className="btn btn-primary"
-              data-toggle="modal"
-              data-target="#exampleModalScrollable"
-            >
-              Add
-            </button>
-            <button
-              type="button"
-              className="btn btn-primary"
+              className="btn btn-primary newEntry-button"
               data-toggle="modal"
               data-target="#exampleModalScrollable"
             >
@@ -67,7 +60,7 @@ class Account extends React.Component {
             </button>
             <button
               type="button"
-              className="btn btn-primary"
+              className="btn btn-primary viewEntry-button"
               data-toggle="modal"
               data-target="#exampleModalScrollable"
               //binds getting data from database with button click

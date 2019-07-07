@@ -91,7 +91,49 @@ class LogIn extends Component {
       return <Redirect to='/records' />;
     }
     return (
-      <Container fluid>
+    
+      <div className='login-page'>
+        <Container fluid>
+          <Row>
+            <Col size="md-12">
+            <h1 className={"styles.glow login-h1"}>6ft Under</h1>
+              <div className="row mt-5">
+                <div className="col-md-6 m-auto">
+                  <div className="card card-body">
+                    <h1 className="text-center mb-3"><i className="fas fa-sign-in-alt"></i>  Log In</h1>
+                    {/* <% include ./partials/messages %> */}
+                    <form className="login-form" action="/users/login" method="POST">
+                      <div className="form-group">
+                        <label htmlFor="email">Email</label>
+                        <input
+                          type="email"
+                          id="email"
+                          name="email"
+                          className="form-control"
+                          placeholder="Enter Email"
+                          onChange={this.handleInputChange}
+                        />
+                      </div>
+                      <div className="form-group">
+                        <label htmlFor="password">Password</label>
+                        <input
+                          type="password"
+                          id="password"
+                          name="password"
+                          className="form-control"
+                          placeholder="Enter Password"
+                          onChange={this.handleInputChange}
+                        />
+                      </div>
+                      <button type="submit" onClick={this.handleFormSubmit} className="btn btn-primary btn-block login-button">Login</button>
+                      {/* <FormBtn onClick={this.handleFormSubmit} className="btn btn-primary btn-block">
+                        Log In
+                      </FormBtn> */}
+                    </form>
+                    {/* <p className="lead mt-4 text-account">
+                      No Account? <a className="text-register" href="/signup">Register</a> */}
+
+      {/* <Container fluid>
         <Row>
           <Col size="md-12">
             <div className="row mt-5">
@@ -102,7 +144,6 @@ class LogIn extends Component {
                     <i className="fas fa-sign-in-alt"></i>
                     Log In
                   </h1>
-                  {/* <% include ./partials/messages %> */}
                   <form action="/users/login" method="POST">
                     <div className="form-group">
                       <label htmlFor="email">Email</label>
@@ -130,21 +171,22 @@ class LogIn extends Component {
                     {/* <FormBtn onClick={this.handleFormSubmit} className="btn btn-primary btn-block">
                       Log In
                     </FormBtn> */}
-                  </form>
-                  <p className="lead mt-4">
-                    No Account? <a href="/signup">Sign Up</a>
+                  {/* </form> */}
+                  <p className="lead mt-4 text-register">
+                    No Account? <a className="text-account" href="/signup">Sign Up</a>
                   </p>
-                  {this.state.showError &&
-                    <p>
-                      Log in is not successful :(
-                    </p>
-                  }
+                    {this.state.showError &&
+                      <p>
+                        Log In is not successful :(
+                      </p>
+                    }
+                  </div>
                 </div>
               </div>
-            </div>
-          </Col>
-        </Row>
-      </Container>
+            </Col>
+          </Row>
+        </Container>
+        </div>
     );
   }
 }
