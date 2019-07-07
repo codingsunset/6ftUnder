@@ -7,7 +7,6 @@ import { Col, Row, Container } from "../Grid";
 import { List, ListItem } from "../List";
 import { Input, TextArea, FormBtn } from "../Form";
 import Modal from '../Modal';
-import AddRecord from "../AddRecord";
 import ReactTooltip from 'react-tooltip'
 import Autosuggest from 'react-autosuggest';
 import fruitsVeggies from '../../utils/list';
@@ -20,14 +19,13 @@ const getSuggestions = value => {
   return inputLength === 0
     ? []
     : fruitsVeggies.filter(
-        lang => lang.name.toLowerCase().slice(0, inputLength) === inputValue
-      );
+      lang => lang.name.toLowerCase().slice(0, inputLength) === inputValue
+    );
 };
 
 const getSuggestionValue = suggestion => suggestion.name;
 
-const renderSuggestion = suggestion => <div className = "form-control">{suggestion.name}</div>;
-
+const renderSuggestion = suggestion => <div className="form-control">{suggestion.name}</div>;
 
 class Records extends Component {
   state = {
@@ -64,11 +62,16 @@ class Records extends Component {
   }
 
   loadRecords = () => {
-    API.getRecords()
+    API.getRecords(sessionStorage.user_id)
       .then(res => {
         console.log(res);
-        this.setState({ records: res.data, vegetableName: "", vegetableAmount: "", notes: "" })
-        }
+        this.setState({
+          records: res.data,
+          vegetableName: "",
+          vegetableAmount: "",
+          notes: ""
+        })
+      }
       )
       .catch(err => console.log(err));
   };
@@ -89,24 +92,29 @@ class Records extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-      if(!this.state.records){
-        this.setState({
-          showModal: true
-        })
-      }
-      API.saveRecord({
-        vegetableName: this.state.value,
-        vegetableAmount: this.state.vegetableAmount,
-        notes: this.state.notes
+    if (!this.state.records) {
+      this.setState({
+        showModal: true
       })
-        .then(res => this.loadRecords())
-        .catch(err => console.log(err));
+    }
+    API.saveRecord({
+      vegetableName: this.state.value,
+      vegetableAmount: this.state.vegetableAmount,
+      notes: this.state.notes,
+      user_id: sessionStorage.user_id
+    })
+      .then(res => this.loadRecords())
+      .catch(err => console.log(err));
   };
-  
+
   hideModal = () => {
     this.setState({
       showModal: false
     })
+  }
+
+  handleLogOut = () => {
+    API.userLogOut();
   }
 
   render() {
@@ -118,9 +126,11 @@ class Records extends Component {
       value,
       onChange: this.onChange
     };
+
     return (
       <Container fluid>
-        <Modal showModal={this.state.showModal} hideModal={this.hideModal}/>
+        <h1> Hello {sessionStorage.user_name} </h1>
+        <Modal showModal={this.state.showModal} hideModal={this.hideModal} />
         <Row>
           <Col size="md-6">
             <Jumbotron>
@@ -133,8 +143,8 @@ class Records extends Component {
                 onSuggestionsClearRequested={this.onSuggestionsClearRequested}
                 getSuggestionValue={getSuggestionValue}
                 renderSuggestion={renderSuggestion}
-                inputProps={inputProps }
-              />  
+                inputProps={inputProps}
+              />
               <Input
                 value={this.state.vegetableAmount}
                 onChange={this.handleInputChange}
@@ -177,7 +187,7 @@ class Records extends Component {
                         ))} */}
                         <li><span>{record.vegetableName}</span> : <span>{record.vegetableAmount}</span></li>
                       </ul>
-                    </ReactTooltip> 
+                    </ReactTooltip>
                     <Link to={"/records/" + record._id}>
                       <strong>
                         {record.vegetableName} of {record.vegetableAmount} pounds
@@ -190,6 +200,8 @@ class Records extends Component {
             ) : (
                 <h3>No Results to Display</h3>
               )}
+            <p></p>
+            <FormBtn onClick={this.handleLogOut}> Log Out </FormBtn>
           </Col>
         </Row>
       </Container>

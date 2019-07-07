@@ -19,17 +19,17 @@ const getSuggestions = value => {
   return inputLength === 0
     ? []
     : fruitsVeggies.filter(
-        lang => lang.name.toLowerCase().slice(0, inputLength) === inputValue
-      );
+      lang => lang.name.toLowerCase().slice(0, inputLength) === inputValue
+    );
 };
 
 const getSuggestionValue = suggestion => suggestion.name;
 
-const renderSuggestion = suggestion => <div className = "form-control">{suggestion.name}</div>;
+const renderSuggestion = suggestion => <div className="form-control">{suggestion.name}</div>;
 
 class Records extends Component {
-  
-  state= {
+
+  state = {
     value: "",
     suggestions: [],
     records: [],
@@ -73,7 +73,7 @@ class Records extends Component {
           notes: ""
         })
       }
-    )
+      )
       .catch(err => console.log(err));
   };
 
@@ -98,28 +98,27 @@ class Records extends Component {
       })
     }
 
-      API.saveRecord({
-        vegetableName: this.state.value,
-        vegetableAmount: this.state.vegetableAmount,
-        notes: this.state.notes,
-        user_id: sessionStorage.user_id
-      })
-        .then(res => this.loadRecords())
-        .catch(err => console.log(err));
-    };
-  
-    hideModal = () => {
-      this.setState({
-        showModal: false
-      })
-    }
+    API.saveRecord({
+      vegetableName: this.state.value,
+      vegetableAmount: this.state.vegetableAmount,
+      notes: this.state.notes,
+      user_id: sessionStorage.user_id
+    })
+      .then(res => this.loadRecords())
+      .catch(err => console.log(err));
+  };
+
+  hideModal = () => {
+    this.setState({
+      showModal: false
+    })
+  }
 
   handleLogOut = () => {
     API.userLogOut();
   }
 
   render() {
-
     const { value, suggestions } = this.state;
 
     const inputProps = {
@@ -133,7 +132,7 @@ class Records extends Component {
       <Container fluid>
         <h1> Hello {sessionStorage.user_name} </h1>
         <FormBtn onClick={this.handleLogOut}> Log Out </FormBtn>
-        <Modal showModal={this.state.showModal} hideModal={this.hideModal}/>
+        <Modal showModal={this.state.showModal} hideModal={this.hideModal} />
 
         <Row>
           <Col size="md-6">
@@ -141,14 +140,14 @@ class Records extends Component {
               <h1>Input Fields</h1>
             </Jumbotron>
             <form>
-            <Autosuggest
+              <Autosuggest
                 suggestions={suggestions}
                 onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
                 onSuggestionsClearRequested={this.onSuggestionsClearRequested}
                 getSuggestionValue={getSuggestionValue}
                 renderSuggestion={renderSuggestion}
-                inputProps={inputProps }
-              />  
+                inputProps={inputProps}
+              />
 
               <Input
                 value={this.state.vegetableAmount}
@@ -184,14 +183,14 @@ class Records extends Component {
               <List>
                 {this.state.records.map(record => (
                   <ListItem key={record._id}>
-                      <ReactTooltip id={record._id} effect="solid">
+                    <ReactTooltip id={record._id} effect="solid">
                       <ul>
                         {/* {record.vegetableName.map(vegetableName => (
                           <span>{vegetableName}</span>
                         ))} */}
                         <li><span>{record.vegetableName}</span> : <span>{record.vegetableAmount}</span></li>
                       </ul>
-                    </ReactTooltip> 
+                    </ReactTooltip>
                     <Link to={"/records/" + record._id}>
                       <strong>
                         {record.vegetableName} of {record.vegetableAmount} oz
