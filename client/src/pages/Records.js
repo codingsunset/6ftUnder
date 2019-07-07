@@ -10,6 +10,9 @@ import Modal from '../components/Modal';
 import ReactTooltip from 'react-tooltip'
 import Autosuggest from 'react-autosuggest';
 import fruitsVeggies from '../utils/list';
+import { Line } from 'react-chartjs-2';
+import Moment from 'moment';
+//import "./style.css";
 import "../components/Records/style.css";
 
 const getSuggestions = value => {
@@ -119,6 +122,41 @@ class Records extends Component {
   }
 
   render() {
+
+    let weight = [];
+
+    const data = {
+      labels: [],
+      datasets: [
+        {
+          label: 'Weight in OZ',
+          data: weight,
+          fill: false,          // Don't fill area under the line
+          borderColor: 'green'  // Line color
+        }
+      ],
+      options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+    }
+    
+
+    const moment = require('moment');
+    let i;
+
+    for (i=0; i<this.state.records.length; i++) {
+      data.labels.push(moment(this.state.records[i].date).format('MMMM Do YYYY'))
+      weight.push(this.state.records[i].vegetableAmount)
+    }
+
+
+
     const { value, suggestions } = this.state;
 
     const inputProps = {
@@ -132,6 +170,15 @@ class Records extends Component {
       <Container fluid>
         <h1> Hello {sessionStorage.user_name} </h1>
         <FormBtn onClick={this.handleLogOut}> Log Out </FormBtn>
+        <Modal showModal={this.state.showModal} hideModal={this.hideModal}/>
+        <div className="App">
+        <header className="App-header">
+          <h5>Weight of compost by day</h5>
+        </header>
+        <article className="canvas-container">
+          <Line data={data}/>
+        </article>
+      </div>
         <Modal showModal={this.state.showModal} hideModal={this.hideModal} />
 
         <Row>
@@ -146,6 +193,9 @@ class Records extends Component {
                 onSuggestionsClearRequested={this.onSuggestionsClearRequested}
                 getSuggestionValue={getSuggestionValue}
                 renderSuggestion={renderSuggestion}
+                inputProps={inputProps }
+              />  
+      <br />
                 inputProps={inputProps}
               />
 
