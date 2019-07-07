@@ -11,6 +11,8 @@ import ReactTooltip from 'react-tooltip'
 import Autosuggest from 'react-autosuggest';
 import fruitsVeggies from '../../utils/list';
 import "./style.css";
+import { Line } from 'react-chartjs-2';
+import Moment from 'moment';
 
 const getSuggestions = value => {
   const inputValue = value.trim().toLowerCase();
@@ -26,6 +28,7 @@ const getSuggestions = value => {
 const getSuggestionValue = suggestion => suggestion.name;
 
 const renderSuggestion = suggestion => <div className="form-control">{suggestion.name}</div>;
+
 
 class Records extends Component {
   state = {
@@ -118,6 +121,40 @@ class Records extends Component {
   }
 
   render() {
+
+    let weight = [];
+
+const data = {
+  labels: [],
+  datasets: [
+    {
+      label: 'Weight in OZ',
+      data: weight,
+      fill: false,          // Don't fill area under the line
+      borderColor: 'green'  // Line color
+    }
+  ],
+  options: {
+    scales: {
+        yAxes: [{
+            ticks: {
+                beginAtZero: true
+            }
+        }]
+    }
+}
+}
+
+
+const moment = require('moment');
+let i;
+
+for (i=0; i<this.state.records.length; i++) {
+  data.labels.push(moment(this.state.records[i].date).format('MMMM Do YYYY'))
+  weight.push(this.state.records[i].vegetableAmount)
+}
+
+
     const { value, suggestions } = this.state;
 
     const inputProps = {
@@ -129,8 +166,16 @@ class Records extends Component {
 
     return (
       <Container fluid>
-        <h1> Hello {sessionStorage.user_name} </h1>
+        <h1> Hello {sessionStorage.user_name}. </h1>
         <Modal showModal={this.state.showModal} hideModal={this.hideModal} />
+        <div className="App">
+        <header className="App-header">
+          <h5>Weight of compost by day</h5>
+        </header>
+        <article className="canvas-container">
+          <Line data={data}/>
+        </article>
+      </div>
         <Row>
           <Col size="md-6">
             <Jumbotron>
