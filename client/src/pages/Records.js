@@ -6,15 +6,56 @@ import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
+//import Modal from '../components/Modal';
+import ReactTooltip from 'react-tooltip'
+import Autosuggest from 'react-autosuggest';
+import fruitsVeggies from '../../utils/list';
+import "./style.css";
+
+const getSuggestions = value => {
+  const inputValue = value.trim().toLowerCase();
+  const inputLength = inputValue.length;
+
+  return inputLength === 0
+    ? []
+    : fruitsVeggies.filter(
+        lang => lang.name.toLowerCase().slice(0, inputLength) === inputValue
+      );
+};
+
+const getSuggestionValue = suggestion => suggestion.name;
+
+const renderSuggestion = suggestion => <div className = "form-control">{suggestion.name}</div>;
 
 class Records extends Component {
-  state = {
+  
+  state= {value: "",
+    suggestions: [],
     records: [],
     vegetableName: "",
     vegetableAmount: "",
-    notes: ""
+    notes: "",
+    showModal: false,
   };
 
+  onChange = (event, { newValue }) => {
+    this.setState({
+      value: newValue
+    });
+    // console.log("newValue is " + newValue)
+    // console.log("this.state ", this.state)
+  };
+  onSuggestionsFetchRequested = ({ value }) => {
+    this.setState({
+      suggestions: getSuggestions(value)
+    });
+  };
+
+  onSuggestionsClearRequested = () => {
+    this.setState({
+      suggestions: []
+    });
+  };
   componentDidMount() {
     this.loadRecords();
   }
@@ -47,7 +88,12 @@ class Records extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    if (this.state.vegetableName && this.state.vegetableAmount) {
+    if (!this.state.records) {
+      this.setState({
+        showModal: true
+      })
+    }
+
       API.saveRecord({
         vegetableName: this.state.vegetableName,
         vegetableAmount: this.state.vegetableAmount,
@@ -57,23 +103,49 @@ class Records extends Component {
         .then(res => this.loadRecords())
         .catch(err => console.log(err));
     }
-  };
+  
+    hideModal = () => {
+      this.setState({
+        showModal: false
+      })
+    }
 
   handleLogOut = () => {
     API.userLogOut();
   }
 
   render() {
+
+    const { value, suggestions } = this.state;
+
+    const inputProps = {
+      className: "form-control",
+      placeholder: "Type a veggie or fruit!",
+      value,
+      onChange: this.onChange
+    };
+
     return (
       <Container fluid>
         <h1> Hello {sessionStorage.user_name} </h1>
         <FormBtn onClick={this.handleLogOut}> Log Out </FormBtn>
+        <Modal showModal={this.state.showModal} hideModal={this.hideModal}/>
+
         <Row>
           <Col size="md-6">
             <Jumbotron>
               <h1>Input Fields</h1>
             </Jumbotron>
             <form>
+            <Autosuggest
+                suggestions={suggestions}
+                onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+                onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+                getSuggestionValue={getSuggestionValue}
+                renderSuggestion={renderSuggestion}
+                inputProps={inputProps }
+              />  
+
               <Input
                 value={this.state.vegetableName}
                 onChange={this.handleInputChange}
@@ -93,7 +165,7 @@ class Records extends Component {
                 placeholder="notes (optional)"
               />
               <FormBtn
-                disabled={!(this.state.vegetableAmount && this.state.vegetableName)}
+                disabled={!this.state.vegetableAmount && !this.state.vegetableName}
                 onClick={this.handleFormSubmit}
               >
                 Submit Record
@@ -108,9 +180,17 @@ class Records extends Component {
               <List>
                 {this.state.records.map(record => (
                   <ListItem key={record._id}>
+                      <ReactTooltip id={record._id} effect="solid">
+                      <ul>
+                        {/* {record.vegetableName.map(vegetableName => (
+                          <span>{vegetableName}</span>
+                        ))} */}
+                        <li><span>{record.vegetableName}</span> : <span>{record.vegetableAmount}</span></li>
+                      </ul>
+                    </ReactTooltip> 
                     <Link to={"/records/" + record._id}>
                       <strong>
-                        {record.vegetableName} of {record.vegetableAmount} pounds
+                        {record.vegetableName} of {record.vegetableAmount} oz
                       </strong>
                     </Link>
                     <DeleteBtn onClick={() => this.deleteRecord(record._id)} />
