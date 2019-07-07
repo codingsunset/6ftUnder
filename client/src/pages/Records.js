@@ -10,6 +10,8 @@ import Modal from '../components/Modal';
 import ReactTooltip from 'react-tooltip'
 import Autosuggest from 'react-autosuggest';
 import fruitsVeggies from '../utils/list';
+import { Line } from 'react-chartjs-2';
+import Moment from 'moment';
 //import "./style.css";
 
 const getSuggestions = value => {
@@ -120,6 +122,40 @@ class Records extends Component {
 
   render() {
 
+    let weight = [];
+
+    const data = {
+      labels: [],
+      datasets: [
+        {
+          label: 'Weight in OZ',
+          data: weight,
+          fill: false,          // Don't fill area under the line
+          borderColor: 'green'  // Line color
+        }
+      ],
+      options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+    }
+    
+
+    const moment = require('moment');
+    let i;
+
+    for (i=0; i<this.state.records.length; i++) {
+      data.labels.push(moment(this.state.records[i].date).format('MMMM Do YYYY'))
+      weight.push(this.state.records[i].vegetableAmount)
+    }
+
+
+
     const { value, suggestions } = this.state;
 
     const inputProps = {
@@ -134,7 +170,14 @@ class Records extends Component {
         <h1> Hello {sessionStorage.user_name} </h1>
         <FormBtn onClick={this.handleLogOut}> Log Out </FormBtn>
         <Modal showModal={this.state.showModal} hideModal={this.hideModal}/>
-
+        <div className="App">
+        <header className="App-header">
+          <h5>Weight of compost by day</h5>
+        </header>
+        <article className="canvas-container">
+          <Line data={data}/>
+        </article>
+      </div>
         <Row>
           <Col size="md-6">
             <Jumbotron>
@@ -149,6 +192,7 @@ class Records extends Component {
                 renderSuggestion={renderSuggestion}
                 inputProps={inputProps }
               />  
+      <br />
 
               <Input
                 value={this.state.vegetableAmount}
