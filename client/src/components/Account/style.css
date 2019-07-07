@@ -79,3 +79,21 @@ form {
     color: #000000;
    
 }
+
+.newEntry-button{
+    background: green;
+    color: white;
+    margin: 15px;
+    border: none;
+}
+
+.viewEntry-button{
+    background: green;
+    color: white;
+    margin: 15px;
+    border: none;
+}
+
+.input-text{
+    margin: 10px;
+}
