@@ -17,7 +17,8 @@ class SignUp extends Component {
       name: "",
       email: "",
       password: "",
-      password2: ""
+      password2: "",
+      message: []
     };
   }
   // state = {
@@ -40,13 +41,35 @@ class SignUp extends Component {
 
   handleFormSubmit(event) {
     event.preventDefault();
-    console.log("SignUp form submitted",
-      this.state.name,
-      this.state.email,
-      this.state.password,
-      this.state.password2);
+    // console.log("SignUp form submitted",
+    //   this.state.name,
+    //   this.state.email,
+    //   this.state.password,
+    //   this.state.password2);
 
-    if (this.state.name && this.state.email && this.state.password) {
+    const { name, email, password, password2 } = this.state;
+    console.log("submit button clicked", name, email, password, password2);
+
+    let errors = [];
+
+    if (!name || !email || !password || !password2) {
+      errors.push({ msg: 'Please enter all fields' });
+    }
+
+    if (password != password2) {
+      errors.push({ msg: 'Passwords do not match' });
+    }
+
+    if (password.length < 6) {
+      errors.push({ msg: 'Password must be at least 6 characters' });
+    }
+
+    if (errors.length > 0) {
+      console.log(errors, name, email, password, password2);
+      this.setState({ message: errors });
+    } else {
+      // if (this.state.name && this.state.email && this.state.password)
+      this.setState({ message: [{ msg: 'Congrats, you have signed up successfully' }] });
       API.userSignUp({
         name: this.state.name,
         email: this.state.email,
@@ -76,6 +99,9 @@ class SignUp extends Component {
     if (this.state.toDashboard === true) {
       return <Redirect to='/records' />;
     }
+    const { message } = this.state;
+    const messageElement = message.map(item => <p> {item.msg} </p>);
+    // this.setState({ message: [] });
     return (
       <Container fluid>
         <Row>
@@ -84,7 +110,8 @@ class SignUp extends Component {
               <div className="col-md-6 m-auto">
                 <div className="card card-body">
                   <h1 className="text-center mb-3">
-                    <i className="fas fa-user-plus"></i> Register
+                    <i className="fas fa-user-plus"></i>
+                    Sign Up
                   </h1>
                   {/* <% include ./partials/messages %> */}
                   <form action="/users/register" method="POST">
@@ -137,10 +164,11 @@ class SignUp extends Component {
                       />
                     </div>
                     <button type="submit" onClick={this.handleFormSubmit} className="btn btn-primary btn-block">
-                      Register
+                      Sign Up
                     </button>
                   </form>
-                  <p className="lead mt-4">Have An Account? <a href="/login">Login</a></p>
+                  <p className="lead mt-4">Have An Account? <a href="/login">Log in</a></p>
+                  {messageElement}
                 </div>
               </div>
             </div>

@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 // import SignUp from "./components/SignUp";
-// import Login from "./components/Login";
+import Login2 from "./components/Login";
 import Account from "./components/Account";
 import Records from "./pages/Records";
 import LogIn from "./pages/LogIn_YG";
@@ -20,6 +20,7 @@ function App(){
           <Route exact path="/signup" component={SignUp} />
           <Route exact path="/" component={LogIn} />
           <Route exact path="/login" component={LogIn} />
+          <Route exact path="/login2" component={Login2} />
           <Route exact path="/account" component={Account} />
           <Route exact path="/records" component={Records} />
           <Route exact path="/records/:id" component={Records} />

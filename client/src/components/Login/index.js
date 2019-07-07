@@ -1,7 +1,7 @@
 import React from "react";
 import "./style.css";
 
-class Login extends React.Component{
+class Login2 extends React.Component{
   render() {
     return (
       <div className="container login-page">
@@ -41,4 +41,4 @@ class Login extends React.Component{
     );
   }
 };
-export default Login;
+export default Login2;
