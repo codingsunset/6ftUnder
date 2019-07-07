@@ -9,14 +9,14 @@ import LogIn from "./pages/LogIn_YG";
 import SignUp from "./pages/SignUp_YG";
 // import Detail from "./pages/Detail";
 // import NoMatch from "./pages/NoMatch";
-import Nav from "./components/Nav";
+// import Nav from "./components/Nav";
 
 
 function App(){
   return (
     <Router>
       <div>
-        <Nav />
+        {/* <Nav /> */}
         <Switch>
           <Route exact path="/signup" component={SignUp} />
           <Route exact path="/test" component={Records} />
