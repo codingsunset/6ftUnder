@@ -150,7 +150,7 @@ const moment = require('moment');
 let i;
 
 for (i=0; i<this.state.records.length; i++) {
-  data.labels.push(moment(this.state.records[i].date).format('MMMM Do YYYY'))
+  data.labels.push(moment(this.state.records[i].date).format('MMMM Do YYYY mm:ss'))
   weight.push(this.state.records[i].vegetableAmount)
 }
 
