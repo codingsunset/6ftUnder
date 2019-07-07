@@ -10,7 +10,7 @@ import Modal from '../components/Modal';
 import ReactTooltip from 'react-tooltip'
 import Autosuggest from 'react-autosuggest';
 import fruitsVeggies from '../utils/list';
-//import "./style.css";
+import "../components/Records/style.css";
 
 const getSuggestions = value => {
   const inputValue = value.trim().toLowerCase();
