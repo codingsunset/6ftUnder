@@ -190,6 +190,7 @@ for (i=0; i<this.state.records.length; i++) {
                 renderSuggestion={renderSuggestion}
                 inputProps={inputProps}
               />
+              <br/>
               <Input
                 value={this.state.vegetableAmount}
                 onChange={this.handleInputChange}
