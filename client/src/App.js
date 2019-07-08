@@ -10,6 +10,7 @@ import SignUp from "./pages/SignUp_YG";
 // import Detail from "./pages/Detail";
 // import NoMatch from "./pages/NoMatch";
 // import Nav from "./components/Nav";
+import "styles.css"
 
 
 function App(){
