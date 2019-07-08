@@ -87,7 +87,7 @@ label {
     color: rgb(108, 247, 149);
 }
 .login-page{
-    background-image: url('http://ec.europa.eu/programmes/horizon2020/en/system/files/newsroom/fotolia_66603841_seeds_green_9538.jpg');
+    background-image: url("../../assets/Images/login-background.png");
     background-repeat: no-repeat;
     height: 100%;
     background-position: center;

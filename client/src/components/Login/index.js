@@ -6,8 +6,9 @@ class Login2 extends React.Component{
   render() {
     return (
       <div className="container login-page">
+        {/* <img src="../../assets/Images/logo.png" alt="Logo" id="homepage-logo"></img> */}
       <Header />
-        <h1 className="glow">6ft Under</h1>
+        {/* <h1 className="glow">6ft Under</h1> */}
         <form action method="post" name="myForm" autoComplete="on">
           <h4>Sign In</h4>
           <div className="floating-input">
