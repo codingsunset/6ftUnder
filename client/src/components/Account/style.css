@@ -97,3 +97,8 @@ form {
 .input-text{
     margin: 10px;
 }
+
+.warning-text{
+    color: red;
+    text-align: center;
+}
