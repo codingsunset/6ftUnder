@@ -1,11 +1,11 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 // import SignUp from "./components/SignUp";
-import Login2 from "./components/Login";
+import LogIn from "./components/Login";
 import Account from "./components/Account";
 // import Records from "./pages/Records";
 import Records from "./components/Records";
-import LogIn from "./pages/LogIn_YG";
+// import LogIn from "./pages/LogIn_YG";
 import SignUp from "./pages/SignUp_YG";
 // import Detail from "./pages/Detail";
 // import NoMatch from "./pages/NoMatch";
@@ -23,7 +23,6 @@ function App(){
           <Route exact path="/test" component={Records} />
           <Route exact path="/" component={LogIn} />
           <Route exact path="/login" component={LogIn} />
-          <Route exact path="/login2" component={Login2} />
           <Route exact path="/account" component={Account} />
           <Route exact path="/records" component={Records} />
           <Route exact path="/records/:id" component={Records} />
