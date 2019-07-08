@@ -6,7 +6,7 @@ import logo from '../../assets/Images/logo.png'; // Tells Webpack this JS file u
 
 function Header() {
   // Import result is the URL of your image
-  return <img src={logo} alt="Logo" id="homepage-logo" />;
+  return <img className="glowing-logo" src={logo} alt="Logo" id="homepage-logo" />;
 }
 
 export default Header;
