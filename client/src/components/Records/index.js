@@ -37,6 +37,7 @@ class Records extends Component {
     records: [],
     vegetableName: "",
     vegetableAmount: "",
+    date: "",
     notes: "",
     showModal: false,
   };
@@ -103,6 +104,7 @@ class Records extends Component {
     API.saveRecord({
       vegetableName: this.state.value,
       vegetableAmount: this.state.vegetableAmount,
+      date: this.state.date,
       notes: this.state.notes,
       user_id: sessionStorage.user_id
     })
