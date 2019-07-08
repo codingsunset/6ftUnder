@@ -101,7 +101,7 @@ class SignUp extends Component {
       return <Redirect to='/records' />;
     }
     const { message } = this.state;
-    const messageElement = message.map(item => <p> {item.msg} </p>);
+    const messageElement = message.map(item => <p className='alert-1'> {item.msg} </p>);
     // this.setState({ message: [] });
     return (
       <div className='signup-page'>

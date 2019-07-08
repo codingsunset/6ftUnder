@@ -140,6 +140,7 @@ html { /* html is full screen. */
     background: var(--formcolor);
     text-align: center;
     background: transparent;
+    /* opacity: 1; */
 }
 .signUp-header{
 
@@ -280,4 +281,8 @@ label {
     display: block;
     margin-left: 0;
     width: 50%;
+}
+.alert-1{
+    color: rgba(253, 6, 18, 0.623);
+    text-align: center;
 }
