@@ -278,10 +278,20 @@ label {
     display: block;
 }
 .signup-button {
+    background-color: forestgreen;
     display: block;
     margin-left: 0;
     width: 50%;
+    border-color: darkgreen
 }
+.signup-button:hover {
+    background-color: limegreen;
+    display: block;
+    margin-left: 0;
+    width: 50%;
+    border-color: darkgreen
+}
+
 .alert-1{
     color: rgba(253, 6, 18, 0.623);
     text-align: center;
