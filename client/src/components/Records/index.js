@@ -61,6 +61,7 @@ class Records extends Component {
       suggestions: []
     });
   };
+
   componentDidMount() {
     this.loadRecords();
   }
@@ -126,53 +127,53 @@ class Records extends Component {
 
     let weight = [];
 
-const data = {
-  labels: [],
-  datasets: [
-    {
-      label: 'Weight in OZ',
-      data: weight,
-      fill: false,          // Don't fill area under the line
-      borderColor: 'green'  // Line color
-    }
-  ],
-  options: {
-    scales: {
-        yAxes: [{
+    const data = {
+      labels: [],
+      datasets: [
+        {
+          label: 'Weight in Oz',
+          data: weight,
+          fill: false,          // Don't fill area under the line
+          borderColor: 'green'  // Line color
+        }
+      ],
+      options: {
+        scales: {
+          yAxes: [{
             ticks: {
-                beginAtZero: true
+              beginAtZero: true
             }
-        }]
+          }]
+        }
+      }
     }
-}
-}
 
-let dates = []
-let amt = []
+    let dates = []
+    let amt = []
 
-const moment = require('moment');
-let i;
-let j;
+    const moment = require('moment');
+    let i;
+    let j;
 
-for (i=0; i<this.state.records.length; i++) {
-  dates.push(moment(this.state.records[i].date).format('MMMM Do YYYY hh:mm'))
-  amt.push(this.state.records[i].vegetableAmount)
-  console.log(dates)
-  console.log(amt)
-}
+    for (i = 0; i < this.state.records.length; i++) {
+      dates.push(moment(this.state.records[i].date).format('MMMM Do YYYY hh:mm'))
+      amt.push(this.state.records[i].vegetableAmount)
+      console.log(dates)
+      console.log(amt)
+    }
 
-for (j=this.state.records.length-1; j>=0; j--) {
-  data.labels.push(dates[j])
-  weight.push(amt[j])
-  console.log(data.labels)
-  console.log(weight)
-}
+    for (j = this.state.records.length - 1; j >= 0; j--) {
+      data.labels.push(dates[j])
+      weight.push(amt[j])
+      console.log(data.labels)
+      console.log(weight)
+    }
 
 
-// for (i=0; i<this.state.records.length; i++) {
-//   data.labels.push(moment(this.state.records[i].date).format('MMMM Do YYYY mm:ss'))
-//   weight.push(this.state.records[i].vegetableAmount)
-// }
+    // for (i=0; i<this.state.records.length; i++) {
+    //   data.labels.push(moment(this.state.records[i].date).format('MMMM Do YYYY mm:ss'))
+    //   weight.push(this.state.records[i].vegetableAmount)
+    // }
 
 
     const { value, suggestions } = this.state;
@@ -189,13 +190,19 @@ for (j=this.state.records.length-1; j>=0; j--) {
         <h1> Hello {sessionStorage.user_name}. </h1>
         <Modal showModal={this.state.showModal} hideModal={this.hideModal} />
         <div className="App">
-        <header className="App-header">
-          <h5>Weight of compost by day</h5>
-        </header>
-        <article className="canvas-container">
-          <Line data={data}/>
-        </article>
-      </div>
+          <header className="App-header">
+            <h5>Weight of compost by day</h5>
+          </header>
+          <article className="canvas-container">
+            <Line
+              data={data}
+              width={300}
+              height={150}
+              options={{ maintainAspectRatio: false }}
+            />
+          </article>
+          <br/>
+        </div>
         <Row>
           <Col size="md-6">
             <Jumbotron>
@@ -210,7 +217,7 @@ for (j=this.state.records.length-1; j>=0; j--) {
                 renderSuggestion={renderSuggestion}
                 inputProps={inputProps}
               />
-              <br/>
+              <br />
               <Input
                 value={this.state.vegetableAmount}
                 onChange={this.handleInputChange}
