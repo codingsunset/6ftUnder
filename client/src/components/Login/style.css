@@ -64,10 +64,16 @@ h1 {
 }
 
 .login-button {
-    background: #2A9AF2;
+    background: forestgreen;
     border: white;
     width: 30%;
 }
+.login-button:hover {
+    background: limegreen;
+    border: white;
+    width: 30%;
+}
+
 .text-register{
     color: white;
     text-align: center;
