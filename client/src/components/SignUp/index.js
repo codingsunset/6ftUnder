@@ -8,6 +8,7 @@ import { Col, Row, Container } from "../Grid";
 // import { Input, TextArea, FormBtn } from "../components/Form";
 import { Redirect } from 'react-router-dom';
 import "./style.css";
+import Header from "../Header";
 
 class SignUp extends Component {
   constructor(props) {
@@ -113,7 +114,8 @@ class SignUp extends Component {
         <Container fluid>
           <Row>
             <Col size="md-12">
-              <h1 className="header signUp-header">6ft Under</h1>
+              <Header />
+              {/* <h1 className="header signUp-header">6ft Under</h1> */}
               <div className="row mt-5">
                 <div className="col-md-6 m-auto">
                   <div className="card card-body">
