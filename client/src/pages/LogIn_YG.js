@@ -7,7 +7,9 @@ import { Col, Row, Container } from "../components/Grid";
 // import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
 import { Redirect } from 'react-router-dom';
+import Header from "../components/Header";
 import "../components/Login/style.css";
+
 
 class LogIn extends Component {
   constructor(props) {
@@ -93,6 +95,7 @@ class LogIn extends Component {
     return (
     
       <div className='login-page'>
+        <Header />
         <Container fluid>
           <Row>
             <Col size="md-12">
