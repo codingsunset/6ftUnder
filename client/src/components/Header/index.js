@@ -1,4 +1,5 @@
 import React from 'react';
+import "./style.css"
 import logo from '../../assets/Images/logo.png'; // Tells Webpack this JS file uses this image
 
 // console.log(logo); // /logo.84287d09.png
