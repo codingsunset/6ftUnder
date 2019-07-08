@@ -95,7 +95,7 @@ class LogIn extends Component {
         <Container fluid>
           <Row>
             <Col size="md-12">
-            <h1 className={"styles.glow login-h1"}>6ft Under</h1>
+            {/* <h1 className={"styles.glow login-h1"}>6ft Under</h1> */}
               <div className="row mt-5">
                 <div className="col-md-6 m-auto">
                   <div className="card card-body">
