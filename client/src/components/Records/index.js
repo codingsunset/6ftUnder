@@ -145,14 +145,32 @@ const data = {
 }
 }
 
+let dates = []
+let amt = []
 
 const moment = require('moment');
 let i;
+let j;
 
 for (i=0; i<this.state.records.length; i++) {
-  data.labels.push(moment(this.state.records[i].date).format('MMMM Do YYYY mm:ss'))
-  weight.push(this.state.records[i].vegetableAmount)
+  dates.push(moment(this.state.records[i].date).format('MMMM Do YYYY hh:mm'))
+  amt.push(this.state.records[i].vegetableAmount)
+  console.log(dates)
+  console.log(amt)
 }
+
+for (j=this.state.records.length-1; j>=0; j--) {
+  data.labels.push(dates[j])
+  weight.push(amt[j])
+  console.log(data.labels)
+  console.log(weight)
+}
+
+
+// for (i=0; i<this.state.records.length; i++) {
+//   data.labels.push(moment(this.state.records[i].date).format('MMMM Do YYYY mm:ss'))
+//   weight.push(this.state.records[i].vegetableAmount)
+// }
 
 
     const { value, suggestions } = this.state;
@@ -236,7 +254,7 @@ for (i=0; i<this.state.records.length; i++) {
                     </ReactTooltip>
                     <Link to={"/records/" + record._id}>
                       <strong>
-                        {record.vegetableName} of {record.vegetableAmount} pounds
+                        On {moment(record.date).format('MMMM Do YYYY')}, we composted {record.vegetableName} of {record.vegetableAmount} ounces.
                       </strong>
                     </Link>
                     {/* <DeleteBtn onClick={() => this.deleteRecord(record._id)} /> */}
