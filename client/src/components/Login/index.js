@@ -1,10 +1,12 @@
 import React from "react";
 import "./style.css";
+import Header from "../Header"
 
 class Login2 extends React.Component{
   render() {
     return (
       <div className="container login-page">
+      <Header />
         <h1 className="glow">6ft Under</h1>
         <form action method="post" name="myForm" autoComplete="on">
           <h4>Sign In</h4>
